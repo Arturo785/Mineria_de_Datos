@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2050
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proyecto mineria de datos", "Proyecto mineria de datos\Proyecto mineria de datos.csproj", "{77493D66-5F64-414E-B5B8-670EF65E9F9B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{77493D66-5F64-414E-B5B8-670EF65E9F9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77493D66-5F64-414E-B5B8-670EF65E9F9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77493D66-5F64-414E-B5B8-670EF65E9F9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77493D66-5F64-414E-B5B8-670EF65E9F9B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {852B137B-0813-4327-AB86-1670F83081C8}
+	EndGlobalSection
+EndGlobal
