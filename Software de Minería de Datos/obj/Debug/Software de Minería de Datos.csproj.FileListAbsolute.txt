@@ -1,7 +1,6 @@
 C:\Users\slaye\Documents\UDG\Semestres\7mo Semestre\Minería de Datos\Proyecto Final\Software de Minería de Datos\Software de Minería de Datos\bin\Debug\Software de Minería de Datos.exe.config
 C:\Users\slaye\Documents\UDG\Semestres\7mo Semestre\Minería de Datos\Proyecto Final\Software de Minería de Datos\Software de Minería de Datos\bin\Debug\Software de Minería de Datos.exe
 C:\Users\slaye\Documents\UDG\Semestres\7mo Semestre\Minería de Datos\Proyecto Final\Software de Minería de Datos\Software de Minería de Datos\bin\Debug\Software de Minería de Datos.pdb
-C:\Users\slaye\Documents\UDG\Semestres\7mo Semestre\Minería de Datos\Proyecto Final\Software de Minería de Datos\Software de Minería de Datos\obj\Debug\Software de Minería de Datos.csprojAssemblyReference.cache
 C:\Users\slaye\Documents\UDG\Semestres\7mo Semestre\Minería de Datos\Proyecto Final\Software de Minería de Datos\Software de Minería de Datos\obj\Debug\Software_de_Minería_de_Datos.MainForm.resources
 C:\Users\slaye\Documents\UDG\Semestres\7mo Semestre\Minería de Datos\Proyecto Final\Software de Minería de Datos\Software de Minería de Datos\obj\Debug\Software_de_Minería_de_Datos.Properties.Resources.resources
 C:\Users\slaye\Documents\UDG\Semestres\7mo Semestre\Minería de Datos\Proyecto Final\Software de Minería de Datos\Software de Minería de Datos\obj\Debug\Software de Minería de Datos.csproj.GenerateResource.cache
@@ -26,4 +25,6 @@ C:\Users\slaye\Documents\UDG\Semestres\7mo Semestre\Minería de Datos\Proyecto F
 C:\Users\slaye\Documents\UDG\Semestres\7mo Semestre\Minería de Datos\Proyecto Final\Software de Minería de Datos\Software de Minería de Datos\obj\Debug\Software_de_Minería_de_Datos.MachineLearningAlgorithms.resources
 C:\Users\slaye\Documents\UDG\Semestres\7mo Semestre\Minería de Datos\Proyecto Final\Software de Minería de Datos\Software de Minería de Datos\obj\Debug\Software_de_Minería_de_Datos.ConfusionMatrices.resources
 C:\Users\slaye\Documents\UDG\Semestres\7mo Semestre\Minería de Datos\Proyecto Final\Software de Minería de Datos\Software de Minería de Datos\obj\Debug\Software_de_Minería_de_Datos.OrdinalAttributeNormalization.resources
-C:\Users\slaye\Documents\UDG\Semestres\7mo Semestre\Minería de Datos\Proyecto Final\Software de Minería de Datos\Software de Minería de Datos\obj\Debug\Software_de_Minería_de_Datos.KInstancesAndClustersInformation.resources
+C:\Users\slaye\Documents\UDG\Semestres\7mo Semestre\Minería de Datos\Proyecto Final\Software de Minería de Datos\Software de Minería de Datos\obj\Debug\Software de Minería de Datos.csprojAssemblyReference.cache
+C:\Users\slaye\Documents\UDG\Semestres\7mo Semestre\Minería de Datos\Proyecto Final\Software de Minería de Datos\Software de Minería de Datos\obj\Debug\Software_de_Minería_de_Datos.KInstancesAndClusters.resources
+C:\Users\slaye\Documents\UDG\Semestres\7mo Semestre\Minería de Datos\Proyecto Final\Software de Minería de Datos\Software de Minería de Datos\obj\Debug\Software_de_Minería_de_Datos.InstancesAndKNearestNeighbors.resources

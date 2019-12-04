@@ -152,13 +152,25 @@ namespace Software_de_Minería_de_Datos
             LabelDataSetInstanceQuantityValue.Text = dataSet.Rows.Count.ToString();
             LabelDataSetAttributeQuantityValue.Text = dataSet.Columns.Count.ToString();
 
-            // Encontrar valores faltantes y valores fuera del dominio para colorear las celdas.
+            // Verificar el tipo del archivo.
             if (DataSetDataFile != null)
             {
+                // Archivo DATA.
+                // Asignar contenido único de archivos DATA.
+                TextBoxGeneralInformation.Text = DataSetDataFile.GeneralInformation;
+                LabelRelationValue.Text = DataSetDataFile.Relation;
+
+                // Encontrar valores faltantes y valores fuera del dominio para colorear las celdas.
                 FindMissingAndOutOfDomainValues();
             }
             else
             {
+                // Archivo CSV.
+                // Limpiar contenido único de archivos DATA.
+                TextBoxGeneralInformation.Text = "N/A";
+                LabelRelationValue.Text = "N/A";
+
+                // Encontrar valores faltantes para colorear las celdas.
                 FindMissingValues();
             }
         }

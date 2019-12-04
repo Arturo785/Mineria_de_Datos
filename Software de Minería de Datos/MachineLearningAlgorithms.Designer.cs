@@ -93,6 +93,7 @@
             this.ComboBoxAlgorithms.Name = "ComboBoxAlgorithms";
             this.ComboBoxAlgorithms.Size = new System.Drawing.Size(225, 21);
             this.ComboBoxAlgorithms.TabIndex = 1;
+            this.ComboBoxAlgorithms.SelectedIndexChanged += new System.EventHandler(this.ComboBoxAlgorithms_SelectedIndexChanged);
             // 
             // GroupBoxValidationMethodologies
             // 

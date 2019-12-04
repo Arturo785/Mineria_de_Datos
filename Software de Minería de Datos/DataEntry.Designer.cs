@@ -56,6 +56,10 @@
             this.LabelDataSetInstanceQuantity = new System.Windows.Forms.Label();
             this.LabelDataSetName = new System.Windows.Forms.Label();
             this.SaveFileDialogDataSet = new System.Windows.Forms.SaveFileDialog();
+            this.LabelGeneralInformation = new System.Windows.Forms.Label();
+            this.LabelRelation = new System.Windows.Forms.Label();
+            this.LabelRelationValue = new System.Windows.Forms.Label();
+            this.TextBoxGeneralInformation = new System.Windows.Forms.TextBox();
             this.MenuStripDataEntry.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewDataSet)).BeginInit();
             this.GroupBoxDataSet.SuspendLayout();
@@ -191,10 +195,10 @@
             this.DataGridViewDataSet.AllowUserToAddRows = false;
             this.DataGridViewDataSet.AllowUserToDeleteRows = false;
             this.DataGridViewDataSet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DataGridViewDataSet.Location = new System.Drawing.Point(12, 125);
+            this.DataGridViewDataSet.Location = new System.Drawing.Point(12, 149);
             this.DataGridViewDataSet.Name = "DataGridViewDataSet";
             this.DataGridViewDataSet.RowHeadersVisible = false;
-            this.DataGridViewDataSet.Size = new System.Drawing.Size(920, 414);
+            this.DataGridViewDataSet.Size = new System.Drawing.Size(920, 390);
             this.DataGridViewDataSet.TabIndex = 2;
             this.DataGridViewDataSet.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewDataSet_CellContentClick);
             this.DataGridViewDataSet.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewDataSet_CellValueChanged);
@@ -202,6 +206,10 @@
             // 
             // GroupBoxDataSet
             // 
+            this.GroupBoxDataSet.Controls.Add(this.TextBoxGeneralInformation);
+            this.GroupBoxDataSet.Controls.Add(this.LabelRelationValue);
+            this.GroupBoxDataSet.Controls.Add(this.LabelRelation);
+            this.GroupBoxDataSet.Controls.Add(this.LabelGeneralInformation);
             this.GroupBoxDataSet.Controls.Add(this.LabelDataSetMissingValuesValue);
             this.GroupBoxDataSet.Controls.Add(this.LabelDataSetAttributeQuantityValue);
             this.GroupBoxDataSet.Controls.Add(this.LabelDataSetInstanceQuantityValue);
@@ -212,7 +220,7 @@
             this.GroupBoxDataSet.Controls.Add(this.LabelDataSetName);
             this.GroupBoxDataSet.Location = new System.Drawing.Point(12, 27);
             this.GroupBoxDataSet.Name = "GroupBoxDataSet";
-            this.GroupBoxDataSet.Size = new System.Drawing.Size(920, 92);
+            this.GroupBoxDataSet.Size = new System.Drawing.Size(920, 116);
             this.GroupBoxDataSet.TabIndex = 3;
             this.GroupBoxDataSet.TabStop = false;
             this.GroupBoxDataSet.Text = "Conjunto de Datos";
@@ -220,7 +228,7 @@
             // LabelDataSetMissingValuesValue
             // 
             this.LabelDataSetMissingValuesValue.AutoSize = true;
-            this.LabelDataSetMissingValuesValue.Location = new System.Drawing.Point(93, 71);
+            this.LabelDataSetMissingValuesValue.Location = new System.Drawing.Point(93, 90);
             this.LabelDataSetMissingValuesValue.Name = "LabelDataSetMissingValuesValue";
             this.LabelDataSetMissingValuesValue.Size = new System.Drawing.Size(27, 13);
             this.LabelDataSetMissingValuesValue.TabIndex = 7;
@@ -229,7 +237,7 @@
             // LabelDataSetAttributeQuantityValue
             // 
             this.LabelDataSetAttributeQuantityValue.AutoSize = true;
-            this.LabelDataSetAttributeQuantityValue.Location = new System.Drawing.Point(113, 54);
+            this.LabelDataSetAttributeQuantityValue.Location = new System.Drawing.Point(113, 72);
             this.LabelDataSetAttributeQuantityValue.Name = "LabelDataSetAttributeQuantityValue";
             this.LabelDataSetAttributeQuantityValue.Size = new System.Drawing.Size(27, 13);
             this.LabelDataSetAttributeQuantityValue.TabIndex = 6;
@@ -238,7 +246,7 @@
             // LabelDataSetInstanceQuantityValue
             // 
             this.LabelDataSetInstanceQuantityValue.AutoSize = true;
-            this.LabelDataSetInstanceQuantityValue.Location = new System.Drawing.Point(120, 37);
+            this.LabelDataSetInstanceQuantityValue.Location = new System.Drawing.Point(120, 55);
             this.LabelDataSetInstanceQuantityValue.Name = "LabelDataSetInstanceQuantityValue";
             this.LabelDataSetInstanceQuantityValue.Size = new System.Drawing.Size(27, 13);
             this.LabelDataSetInstanceQuantityValue.TabIndex = 5;
@@ -256,7 +264,7 @@
             // LabelDatasetMissingValues
             // 
             this.LabelDatasetMissingValues.AutoSize = true;
-            this.LabelDatasetMissingValues.Location = new System.Drawing.Point(7, 71);
+            this.LabelDatasetMissingValues.Location = new System.Drawing.Point(7, 90);
             this.LabelDatasetMissingValues.Name = "LabelDatasetMissingValues";
             this.LabelDatasetMissingValues.Size = new System.Drawing.Size(91, 13);
             this.LabelDatasetMissingValues.TabIndex = 3;
@@ -265,7 +273,7 @@
             // LabelDatasetAttributeQuantity
             // 
             this.LabelDatasetAttributeQuantity.AutoSize = true;
-            this.LabelDatasetAttributeQuantity.Location = new System.Drawing.Point(7, 54);
+            this.LabelDatasetAttributeQuantity.Location = new System.Drawing.Point(7, 72);
             this.LabelDatasetAttributeQuantity.Name = "LabelDatasetAttributeQuantity";
             this.LabelDatasetAttributeQuantity.Size = new System.Drawing.Size(111, 13);
             this.LabelDatasetAttributeQuantity.TabIndex = 2;
@@ -274,7 +282,7 @@
             // LabelDataSetInstanceQuantity
             // 
             this.LabelDataSetInstanceQuantity.AutoSize = true;
-            this.LabelDataSetInstanceQuantity.Location = new System.Drawing.Point(7, 37);
+            this.LabelDataSetInstanceQuantity.Location = new System.Drawing.Point(7, 55);
             this.LabelDataSetInstanceQuantity.Name = "LabelDataSetInstanceQuantity";
             this.LabelDataSetInstanceQuantity.Size = new System.Drawing.Size(118, 13);
             this.LabelDataSetInstanceQuantity.TabIndex = 1;
@@ -288,6 +296,42 @@
             this.LabelDataSetName.Size = new System.Drawing.Size(47, 13);
             this.LabelDataSetName.TabIndex = 0;
             this.LabelDataSetName.Text = "Nombre:";
+            // 
+            // LabelGeneralInformation
+            // 
+            this.LabelGeneralInformation.AutoSize = true;
+            this.LabelGeneralInformation.Location = new System.Drawing.Point(296, 20);
+            this.LabelGeneralInformation.Name = "LabelGeneralInformation";
+            this.LabelGeneralInformation.Size = new System.Drawing.Size(105, 13);
+            this.LabelGeneralInformation.TabIndex = 8;
+            this.LabelGeneralInformation.Text = "Información General:";
+            // 
+            // LabelRelation
+            // 
+            this.LabelRelation.AutoSize = true;
+            this.LabelRelation.Location = new System.Drawing.Point(7, 37);
+            this.LabelRelation.Name = "LabelRelation";
+            this.LabelRelation.Size = new System.Drawing.Size(52, 13);
+            this.LabelRelation.TabIndex = 10;
+            this.LabelRelation.Text = "Relación:";
+            // 
+            // LabelRelationValue
+            // 
+            this.LabelRelationValue.AutoSize = true;
+            this.LabelRelationValue.Location = new System.Drawing.Point(54, 37);
+            this.LabelRelationValue.Name = "LabelRelationValue";
+            this.LabelRelationValue.Size = new System.Drawing.Size(27, 13);
+            this.LabelRelationValue.TabIndex = 13;
+            this.LabelRelationValue.Text = "N/A";
+            // 
+            // TextBoxGeneralInformation
+            // 
+            this.TextBoxGeneralInformation.Enabled = false;
+            this.TextBoxGeneralInformation.Location = new System.Drawing.Point(407, 17);
+            this.TextBoxGeneralInformation.Multiline = true;
+            this.TextBoxGeneralInformation.Name = "TextBoxGeneralInformation";
+            this.TextBoxGeneralInformation.Size = new System.Drawing.Size(507, 86);
+            this.TextBoxGeneralInformation.TabIndex = 14;
             // 
             // DataEntry
             // 
@@ -339,5 +383,9 @@
         private System.Windows.Forms.ToolStripMenuItem AttributeInformationToolStripMenuItem;
         public System.Windows.Forms.OpenFileDialog OpenFileDialogDataSet;
         private System.Windows.Forms.SaveFileDialog SaveFileDialogDataSet;
+        private System.Windows.Forms.Label LabelGeneralInformation;
+        private System.Windows.Forms.Label LabelRelation;
+        private System.Windows.Forms.Label LabelRelationValue;
+        private System.Windows.Forms.TextBox TextBoxGeneralInformation;
     }
 }

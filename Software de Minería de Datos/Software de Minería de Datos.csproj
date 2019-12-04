@@ -127,11 +127,17 @@
     <Compile Include="EditAttribute.Designer.cs">
       <DependentUpon>EditAttribute.cs</DependentUpon>
     </Compile>
-    <Compile Include="KIntancesAndKClustersInformation.cs">
+    <Compile Include="InstancesAndKNearestNeighbors.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="KIntancesAndKClustersInformation.Designer.cs">
-      <DependentUpon>KIntancesAndKClustersInformation.cs</DependentUpon>
+    <Compile Include="InstancesAndKNearestNeighbors.Designer.cs">
+      <DependentUpon>InstancesAndKNearestNeighbors.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KIntancesAndKClusters.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KIntancesAndKClusters.Designer.cs">
+      <DependentUpon>KIntancesAndKClusters.cs</DependentUpon>
     </Compile>
     <Compile Include="MachineLearningAlgorithms.cs">
       <SubType>Form</SubType>
@@ -210,8 +216,11 @@
     <EmbeddedResource Include="EditAttribute.resx">
       <DependentUpon>EditAttribute.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="KIntancesAndKClustersInformation.resx">
-      <DependentUpon>KIntancesAndKClustersInformation.cs</DependentUpon>
+    <EmbeddedResource Include="InstancesAndKNearestNeighbors.resx">
+      <DependentUpon>InstancesAndKNearestNeighbors.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KIntancesAndKClusters.resx">
+      <DependentUpon>KIntancesAndKClusters.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineLearningAlgorithms.resx">
       <DependentUpon>MachineLearningAlgorithms.cs</DependentUpon>
