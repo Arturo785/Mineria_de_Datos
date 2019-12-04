@@ -25,30 +25,5 @@ C:\Users\slaye\Documents\UDG\Semestres\7mo Semestre\Minería de Datos\Proyecto F
 C:\Users\slaye\Documents\UDG\Semestres\7mo Semestre\Minería de Datos\Proyecto Final\Software de Minería de Datos\Software de Minería de Datos\obj\Debug\Software_de_Minería_de_Datos.DataSampling.resources
 C:\Users\slaye\Documents\UDG\Semestres\7mo Semestre\Minería de Datos\Proyecto Final\Software de Minería de Datos\Software de Minería de Datos\obj\Debug\Software_de_Minería_de_Datos.MachineLearningAlgorithms.resources
 C:\Users\slaye\Documents\UDG\Semestres\7mo Semestre\Minería de Datos\Proyecto Final\Software de Minería de Datos\Software de Minería de Datos\obj\Debug\Software_de_Minería_de_Datos.ConfusionMatrices.resources
-C:\Users\slaye\Documents\GitHub Repo's\Mineria_de_Datos\Software de Minería de Datos\bin\Debug\Software de Minería de Datos.exe.config
-C:\Users\slaye\Documents\GitHub Repo's\Mineria_de_Datos\Software de Minería de Datos\bin\Debug\Software de Minería de Datos.exe
-C:\Users\slaye\Documents\GitHub Repo's\Mineria_de_Datos\Software de Minería de Datos\bin\Debug\Software de Minería de Datos.pdb
-C:\Users\slaye\Documents\GitHub Repo's\Mineria_de_Datos\Software de Minería de Datos\obj\Debug\Software de Minería de Datos.csprojAssemblyReference.cache
-C:\Users\slaye\Documents\GitHub Repo's\Mineria_de_Datos\Software de Minería de Datos\obj\Debug\Software_de_Minería_de_Datos.AddAttribute.resources
-C:\Users\slaye\Documents\GitHub Repo's\Mineria_de_Datos\Software de Minería de Datos\obj\Debug\Software_de_Minería_de_Datos.AddInstances.resources
-C:\Users\slaye\Documents\GitHub Repo's\Mineria_de_Datos\Software de Minería de Datos\obj\Debug\Software_de_Minería_de_Datos.AttributeCleaning.resources
-C:\Users\slaye\Documents\GitHub Repo's\Mineria_de_Datos\Software de Minería de Datos\obj\Debug\Software_de_Minería_de_Datos.AttributeInformation.resources
-C:\Users\slaye\Documents\GitHub Repo's\Mineria_de_Datos\Software de Minería de Datos\obj\Debug\Software_de_Minería_de_Datos.BivariateAnalysis.resources
-C:\Users\slaye\Documents\GitHub Repo's\Mineria_de_Datos\Software de Minería de Datos\obj\Debug\Software_de_Minería_de_Datos.ConfusionMatrices.resources
-C:\Users\slaye\Documents\GitHub Repo's\Mineria_de_Datos\Software de Minería de Datos\obj\Debug\Software_de_Minería_de_Datos.CorrectOutliers.resources
-C:\Users\slaye\Documents\GitHub Repo's\Mineria_de_Datos\Software de Minería de Datos\obj\Debug\Software_de_Minería_de_Datos.CorrectTypographicErrors.resources
-C:\Users\slaye\Documents\GitHub Repo's\Mineria_de_Datos\Software de Minería de Datos\obj\Debug\Software_de_Minería_de_Datos.DataCleaning.resources
-C:\Users\slaye\Documents\GitHub Repo's\Mineria_de_Datos\Software de Minería de Datos\obj\Debug\Software_de_Minería_de_Datos.DataEntry.resources
-C:\Users\slaye\Documents\GitHub Repo's\Mineria_de_Datos\Software de Minería de Datos\obj\Debug\Software_de_Minería_de_Datos.DataSampling.resources
-C:\Users\slaye\Documents\GitHub Repo's\Mineria_de_Datos\Software de Minería de Datos\obj\Debug\Software_de_Minería_de_Datos.DeleteAttribute.resources
-C:\Users\slaye\Documents\GitHub Repo's\Mineria_de_Datos\Software de Minería de Datos\obj\Debug\Software_de_Minería_de_Datos.EditAttribute.resources
-C:\Users\slaye\Documents\GitHub Repo's\Mineria_de_Datos\Software de Minería de Datos\obj\Debug\Software_de_Minería_de_Datos.MachineLearningAlgorithms.resources
-C:\Users\slaye\Documents\GitHub Repo's\Mineria_de_Datos\Software de Minería de Datos\obj\Debug\Software_de_Minería_de_Datos.MainForm.resources
-C:\Users\slaye\Documents\GitHub Repo's\Mineria_de_Datos\Software de Minería de Datos\obj\Debug\Software_de_Minería_de_Datos.Properties.Resources.resources
-C:\Users\slaye\Documents\GitHub Repo's\Mineria_de_Datos\Software de Minería de Datos\obj\Debug\Software_de_Minería_de_Datos.SaveFileAsDATA.resources
-C:\Users\slaye\Documents\GitHub Repo's\Mineria_de_Datos\Software de Minería de Datos\obj\Debug\Software_de_Minería_de_Datos.StatisticalAnalysis.resources
-C:\Users\slaye\Documents\GitHub Repo's\Mineria_de_Datos\Software de Minería de Datos\obj\Debug\Software_de_Minería_de_Datos.UnivariateAnalysis.resources
-C:\Users\slaye\Documents\GitHub Repo's\Mineria_de_Datos\Software de Minería de Datos\obj\Debug\Software de Minería de Datos.csproj.GenerateResource.cache
-C:\Users\slaye\Documents\GitHub Repo's\Mineria_de_Datos\Software de Minería de Datos\obj\Debug\Software de Minería de Datos.csproj.CoreCompileInputs.cache
-C:\Users\slaye\Documents\GitHub Repo's\Mineria_de_Datos\Software de Minería de Datos\obj\Debug\Software de Minería de Datos.exe
-C:\Users\slaye\Documents\GitHub Repo's\Mineria_de_Datos\Software de Minería de Datos\obj\Debug\Software de Minería de Datos.pdb
+C:\Users\slaye\Documents\UDG\Semestres\7mo Semestre\Minería de Datos\Proyecto Final\Software de Minería de Datos\Software de Minería de Datos\obj\Debug\Software_de_Minería_de_Datos.OrdinalAttributeNormalization.resources
+C:\Users\slaye\Documents\UDG\Semestres\7mo Semestre\Minería de Datos\Proyecto Final\Software de Minería de Datos\Software de Minería de Datos\obj\Debug\Software_de_Minería_de_Datos.KInstancesAndClustersInformation.resources

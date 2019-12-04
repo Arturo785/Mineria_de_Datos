@@ -31,37 +31,42 @@
             this.GroupBoxAlgorithms = new System.Windows.Forms.GroupBox();
             this.ComboBoxAlgorithms = new System.Windows.Forms.ComboBox();
             this.GroupBoxValidationMethodologies = new System.Windows.Forms.GroupBox();
-            this.RadioButtonHoldOut = new System.Windows.Forms.RadioButton();
-            this.RadioButtonKFoldCrossValidation = new System.Windows.Forms.RadioButton();
-            this.GroupBoxHoldOut = new System.Windows.Forms.GroupBox();
-            this.LabelPercentageTrainingSet = new System.Windows.Forms.Label();
-            this.NumericUpDownPercentageTrainingSet = new System.Windows.Forms.NumericUpDown();
             this.GroupBoxKFoldCrossValidation = new System.Windows.Forms.GroupBox();
-            this.LabelKValue = new System.Windows.Forms.Label();
-            this.NumericUpDownKValue = new System.Windows.Forms.NumericUpDown();
+            this.NumericUpDownKFoldCrossValidationKValue = new System.Windows.Forms.NumericUpDown();
+            this.LabelKFoldCrossValidationKValue = new System.Windows.Forms.Label();
+            this.GroupBoxHoldOut = new System.Windows.Forms.GroupBox();
+            this.NumericUpDownPercentageTrainingSet = new System.Windows.Forms.NumericUpDown();
+            this.LabelPercentageTrainingSet = new System.Windows.Forms.Label();
+            this.RadioButtonKFoldCrossValidation = new System.Windows.Forms.RadioButton();
+            this.RadioButtonHoldOut = new System.Windows.Forms.RadioButton();
             this.GroupBoxClassAttribute = new System.Windows.Forms.GroupBox();
+            this.LabelTypeValue = new System.Windows.Forms.Label();
+            this.LabelType = new System.Windows.Forms.Label();
             this.ComboBoxClassAttribute = new System.Windows.Forms.ComboBox();
             this.PanelMachineLearningAlgorithm = new System.Windows.Forms.Panel();
             this.ButtonTrainAlgorithm = new System.Windows.Forms.Button();
             this.GroupBoxEvaluation = new System.Windows.Forms.GroupBox();
-            this.GroupBoxClassification = new System.Windows.Forms.GroupBox();
             this.GroupBoxRegression = new System.Windows.Forms.GroupBox();
-            this.LabelType = new System.Windows.Forms.Label();
-            this.LabelTypeValue = new System.Windows.Forms.Label();
-            this.LabelAccuracy = new System.Windows.Forms.Label();
-            this.LabelAccuracyValue = new System.Windows.Forms.Label();
-            this.LabelMeanSquaredError = new System.Windows.Forms.Label();
             this.LabelMeanSquaredErrorValue = new System.Windows.Forms.Label();
+            this.LabelMeanSquaredError = new System.Windows.Forms.Label();
+            this.GroupBoxClassification = new System.Windows.Forms.GroupBox();
+            this.LabelAccuracyValue = new System.Windows.Forms.Label();
+            this.LabelAccuracy = new System.Windows.Forms.Label();
+            this.GroupBoxKMeansAndKNearestNeighbors = new System.Windows.Forms.GroupBox();
+            this.NumericUpDownKMeansAndKNearestNeighborsKValue = new System.Windows.Forms.NumericUpDown();
+            this.LabelKMeansAndKNearestNeighborsKValue = new System.Windows.Forms.Label();
             this.GroupBoxAlgorithms.SuspendLayout();
             this.GroupBoxValidationMethodologies.SuspendLayout();
+            this.GroupBoxKFoldCrossValidation.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NumericUpDownKFoldCrossValidationKValue)).BeginInit();
             this.GroupBoxHoldOut.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumericUpDownPercentageTrainingSet)).BeginInit();
-            this.GroupBoxKFoldCrossValidation.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NumericUpDownKValue)).BeginInit();
             this.GroupBoxClassAttribute.SuspendLayout();
             this.GroupBoxEvaluation.SuspendLayout();
-            this.GroupBoxClassification.SuspendLayout();
             this.GroupBoxRegression.SuspendLayout();
+            this.GroupBoxClassification.SuspendLayout();
+            this.GroupBoxKMeansAndKNearestNeighbors.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NumericUpDownKMeansAndKNearestNeighborsKValue)).BeginInit();
             this.SuspendLayout();
             // 
             // GroupBoxAlgorithms
@@ -95,35 +100,49 @@
             this.GroupBoxValidationMethodologies.Controls.Add(this.GroupBoxHoldOut);
             this.GroupBoxValidationMethodologies.Controls.Add(this.RadioButtonKFoldCrossValidation);
             this.GroupBoxValidationMethodologies.Controls.Add(this.RadioButtonHoldOut);
-            this.GroupBoxValidationMethodologies.Location = new System.Drawing.Point(12, 135);
+            this.GroupBoxValidationMethodologies.Location = new System.Drawing.Point(12, 201);
             this.GroupBoxValidationMethodologies.Name = "GroupBoxValidationMethodologies";
             this.GroupBoxValidationMethodologies.Size = new System.Drawing.Size(237, 198);
             this.GroupBoxValidationMethodologies.TabIndex = 1;
             this.GroupBoxValidationMethodologies.TabStop = false;
             this.GroupBoxValidationMethodologies.Text = "Metodologías de Validación";
             // 
-            // RadioButtonHoldOut
+            // GroupBoxKFoldCrossValidation
             // 
-            this.RadioButtonHoldOut.AutoSize = true;
-            this.RadioButtonHoldOut.Checked = true;
-            this.RadioButtonHoldOut.Location = new System.Drawing.Point(6, 20);
-            this.RadioButtonHoldOut.Name = "RadioButtonHoldOut";
-            this.RadioButtonHoldOut.Size = new System.Drawing.Size(67, 17);
-            this.RadioButtonHoldOut.TabIndex = 2;
-            this.RadioButtonHoldOut.TabStop = true;
-            this.RadioButtonHoldOut.Text = "Hold-Out";
-            this.RadioButtonHoldOut.UseVisualStyleBackColor = true;
+            this.GroupBoxKFoldCrossValidation.Controls.Add(this.NumericUpDownKFoldCrossValidationKValue);
+            this.GroupBoxKFoldCrossValidation.Controls.Add(this.LabelKFoldCrossValidationKValue);
+            this.GroupBoxKFoldCrossValidation.Location = new System.Drawing.Point(6, 133);
+            this.GroupBoxKFoldCrossValidation.Name = "GroupBoxKFoldCrossValidation";
+            this.GroupBoxKFoldCrossValidation.Size = new System.Drawing.Size(225, 59);
+            this.GroupBoxKFoldCrossValidation.TabIndex = 2;
+            this.GroupBoxKFoldCrossValidation.TabStop = false;
+            this.GroupBoxKFoldCrossValidation.Text = "K-Fold Cross Validation";
             // 
-            // RadioButtonKFoldCrossValidation
+            // NumericUpDownKFoldCrossValidationKValue
             // 
-            this.RadioButtonKFoldCrossValidation.AutoSize = true;
-            this.RadioButtonKFoldCrossValidation.Location = new System.Drawing.Point(6, 110);
-            this.RadioButtonKFoldCrossValidation.Name = "RadioButtonKFoldCrossValidation";
-            this.RadioButtonKFoldCrossValidation.Size = new System.Drawing.Size(133, 17);
-            this.RadioButtonKFoldCrossValidation.TabIndex = 3;
-            this.RadioButtonKFoldCrossValidation.TabStop = true;
-            this.RadioButtonKFoldCrossValidation.Text = "K-Fold Cross Validation";
-            this.RadioButtonKFoldCrossValidation.UseVisualStyleBackColor = true;
+            this.NumericUpDownKFoldCrossValidationKValue.Location = new System.Drawing.Point(6, 32);
+            this.NumericUpDownKFoldCrossValidationKValue.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NumericUpDownKFoldCrossValidationKValue.Name = "NumericUpDownKFoldCrossValidationKValue";
+            this.NumericUpDownKFoldCrossValidationKValue.Size = new System.Drawing.Size(213, 20);
+            this.NumericUpDownKFoldCrossValidationKValue.TabIndex = 3;
+            this.NumericUpDownKFoldCrossValidationKValue.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // LabelKFoldCrossValidationKValue
+            // 
+            this.LabelKFoldCrossValidationKValue.AutoSize = true;
+            this.LabelKFoldCrossValidationKValue.Location = new System.Drawing.Point(6, 16);
+            this.LabelKFoldCrossValidationKValue.Name = "LabelKFoldCrossValidationKValue";
+            this.LabelKFoldCrossValidationKValue.Size = new System.Drawing.Size(59, 13);
+            this.LabelKFoldCrossValidationKValue.TabIndex = 2;
+            this.LabelKFoldCrossValidationKValue.Text = "Valor de K:";
             // 
             // GroupBoxHoldOut
             // 
@@ -135,15 +154,6 @@
             this.GroupBoxHoldOut.TabIndex = 2;
             this.GroupBoxHoldOut.TabStop = false;
             this.GroupBoxHoldOut.Text = "Hold-Out";
-            // 
-            // LabelPercentageTrainingSet
-            // 
-            this.LabelPercentageTrainingSet.AutoSize = true;
-            this.LabelPercentageTrainingSet.Location = new System.Drawing.Point(6, 16);
-            this.LabelPercentageTrainingSet.Name = "LabelPercentageTrainingSet";
-            this.LabelPercentageTrainingSet.Size = new System.Drawing.Size(198, 13);
-            this.LabelPercentageTrainingSet.TabIndex = 2;
-            this.LabelPercentageTrainingSet.Text = "Porcentaje (Conjunto de Entrenamiento):";
             // 
             // NumericUpDownPercentageTrainingSet
             // 
@@ -162,42 +172,37 @@
             0,
             0});
             // 
-            // GroupBoxKFoldCrossValidation
+            // LabelPercentageTrainingSet
             // 
-            this.GroupBoxKFoldCrossValidation.Controls.Add(this.NumericUpDownKValue);
-            this.GroupBoxKFoldCrossValidation.Controls.Add(this.LabelKValue);
-            this.GroupBoxKFoldCrossValidation.Location = new System.Drawing.Point(6, 133);
-            this.GroupBoxKFoldCrossValidation.Name = "GroupBoxKFoldCrossValidation";
-            this.GroupBoxKFoldCrossValidation.Size = new System.Drawing.Size(225, 59);
-            this.GroupBoxKFoldCrossValidation.TabIndex = 2;
-            this.GroupBoxKFoldCrossValidation.TabStop = false;
-            this.GroupBoxKFoldCrossValidation.Text = "K-Fold Cross Validation";
+            this.LabelPercentageTrainingSet.AutoSize = true;
+            this.LabelPercentageTrainingSet.Location = new System.Drawing.Point(6, 16);
+            this.LabelPercentageTrainingSet.Name = "LabelPercentageTrainingSet";
+            this.LabelPercentageTrainingSet.Size = new System.Drawing.Size(198, 13);
+            this.LabelPercentageTrainingSet.TabIndex = 2;
+            this.LabelPercentageTrainingSet.Text = "Porcentaje (Conjunto de Entrenamiento):";
             // 
-            // LabelKValue
+            // RadioButtonKFoldCrossValidation
             // 
-            this.LabelKValue.AutoSize = true;
-            this.LabelKValue.Location = new System.Drawing.Point(6, 16);
-            this.LabelKValue.Name = "LabelKValue";
-            this.LabelKValue.Size = new System.Drawing.Size(59, 13);
-            this.LabelKValue.TabIndex = 2;
-            this.LabelKValue.Text = "Valor de K:";
+            this.RadioButtonKFoldCrossValidation.AutoSize = true;
+            this.RadioButtonKFoldCrossValidation.Location = new System.Drawing.Point(6, 110);
+            this.RadioButtonKFoldCrossValidation.Name = "RadioButtonKFoldCrossValidation";
+            this.RadioButtonKFoldCrossValidation.Size = new System.Drawing.Size(133, 17);
+            this.RadioButtonKFoldCrossValidation.TabIndex = 3;
+            this.RadioButtonKFoldCrossValidation.TabStop = true;
+            this.RadioButtonKFoldCrossValidation.Text = "K-Fold Cross Validation";
+            this.RadioButtonKFoldCrossValidation.UseVisualStyleBackColor = true;
             // 
-            // NumericUpDownKValue
+            // RadioButtonHoldOut
             // 
-            this.NumericUpDownKValue.Location = new System.Drawing.Point(6, 32);
-            this.NumericUpDownKValue.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.NumericUpDownKValue.Name = "NumericUpDownKValue";
-            this.NumericUpDownKValue.Size = new System.Drawing.Size(213, 20);
-            this.NumericUpDownKValue.TabIndex = 3;
-            this.NumericUpDownKValue.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
+            this.RadioButtonHoldOut.AutoSize = true;
+            this.RadioButtonHoldOut.Checked = true;
+            this.RadioButtonHoldOut.Location = new System.Drawing.Point(6, 20);
+            this.RadioButtonHoldOut.Name = "RadioButtonHoldOut";
+            this.RadioButtonHoldOut.Size = new System.Drawing.Size(67, 17);
+            this.RadioButtonHoldOut.TabIndex = 2;
+            this.RadioButtonHoldOut.TabStop = true;
+            this.RadioButtonHoldOut.Text = "Hold-Out";
+            this.RadioButtonHoldOut.UseVisualStyleBackColor = true;
             // 
             // GroupBoxClassAttribute
             // 
@@ -210,6 +215,24 @@
             this.GroupBoxClassAttribute.TabIndex = 2;
             this.GroupBoxClassAttribute.TabStop = false;
             this.GroupBoxClassAttribute.Text = "Atributo Clase";
+            // 
+            // LabelTypeValue
+            // 
+            this.LabelTypeValue.AutoSize = true;
+            this.LabelTypeValue.Location = new System.Drawing.Point(32, 16);
+            this.LabelTypeValue.Name = "LabelTypeValue";
+            this.LabelTypeValue.Size = new System.Drawing.Size(27, 13);
+            this.LabelTypeValue.TabIndex = 5;
+            this.LabelTypeValue.Text = "N/A";
+            // 
+            // LabelType
+            // 
+            this.LabelType.AutoSize = true;
+            this.LabelType.Location = new System.Drawing.Point(6, 16);
+            this.LabelType.Name = "LabelType";
+            this.LabelType.Size = new System.Drawing.Size(31, 13);
+            this.LabelType.TabIndex = 4;
+            this.LabelType.Text = "Tipo:";
             // 
             // ComboBoxClassAttribute
             // 
@@ -230,7 +253,7 @@
             // 
             // ButtonTrainAlgorithm
             // 
-            this.ButtonTrainAlgorithm.Location = new System.Drawing.Point(12, 339);
+            this.ButtonTrainAlgorithm.Location = new System.Drawing.Point(12, 405);
             this.ButtonTrainAlgorithm.Name = "ButtonTrainAlgorithm";
             this.ButtonTrainAlgorithm.Size = new System.Drawing.Size(237, 23);
             this.ButtonTrainAlgorithm.TabIndex = 4;
@@ -242,12 +265,41 @@
             // 
             this.GroupBoxEvaluation.Controls.Add(this.GroupBoxRegression);
             this.GroupBoxEvaluation.Controls.Add(this.GroupBoxClassification);
-            this.GroupBoxEvaluation.Location = new System.Drawing.Point(12, 368);
+            this.GroupBoxEvaluation.Location = new System.Drawing.Point(12, 434);
             this.GroupBoxEvaluation.Name = "GroupBoxEvaluation";
-            this.GroupBoxEvaluation.Size = new System.Drawing.Size(237, 131);
+            this.GroupBoxEvaluation.Size = new System.Drawing.Size(237, 105);
             this.GroupBoxEvaluation.TabIndex = 5;
             this.GroupBoxEvaluation.TabStop = false;
             this.GroupBoxEvaluation.Text = "Evaluación";
+            // 
+            // GroupBoxRegression
+            // 
+            this.GroupBoxRegression.Controls.Add(this.LabelMeanSquaredErrorValue);
+            this.GroupBoxRegression.Controls.Add(this.LabelMeanSquaredError);
+            this.GroupBoxRegression.Location = new System.Drawing.Point(6, 62);
+            this.GroupBoxRegression.Name = "GroupBoxRegression";
+            this.GroupBoxRegression.Size = new System.Drawing.Size(225, 37);
+            this.GroupBoxRegression.TabIndex = 1;
+            this.GroupBoxRegression.TabStop = false;
+            this.GroupBoxRegression.Text = "Regresión";
+            // 
+            // LabelMeanSquaredErrorValue
+            // 
+            this.LabelMeanSquaredErrorValue.AutoSize = true;
+            this.LabelMeanSquaredErrorValue.Location = new System.Drawing.Point(120, 16);
+            this.LabelMeanSquaredErrorValue.Name = "LabelMeanSquaredErrorValue";
+            this.LabelMeanSquaredErrorValue.Size = new System.Drawing.Size(27, 13);
+            this.LabelMeanSquaredErrorValue.TabIndex = 8;
+            this.LabelMeanSquaredErrorValue.Text = "N/A";
+            // 
+            // LabelMeanSquaredError
+            // 
+            this.LabelMeanSquaredError.AutoSize = true;
+            this.LabelMeanSquaredError.Location = new System.Drawing.Point(6, 16);
+            this.LabelMeanSquaredError.Name = "LabelMeanSquaredError";
+            this.LabelMeanSquaredError.Size = new System.Drawing.Size(118, 13);
+            this.LabelMeanSquaredError.TabIndex = 0;
+            this.LabelMeanSquaredError.Text = "Error Cuadrático Medio:";
             // 
             // GroupBoxClassification
             // 
@@ -255,81 +307,72 @@
             this.GroupBoxClassification.Controls.Add(this.LabelAccuracy);
             this.GroupBoxClassification.Location = new System.Drawing.Point(6, 19);
             this.GroupBoxClassification.Name = "GroupBoxClassification";
-            this.GroupBoxClassification.Size = new System.Drawing.Size(225, 50);
+            this.GroupBoxClassification.Size = new System.Drawing.Size(225, 37);
             this.GroupBoxClassification.TabIndex = 0;
             this.GroupBoxClassification.TabStop = false;
             this.GroupBoxClassification.Text = "Clasificación";
             // 
-            // GroupBoxRegression
-            // 
-            this.GroupBoxRegression.Controls.Add(this.LabelMeanSquaredErrorValue);
-            this.GroupBoxRegression.Controls.Add(this.LabelMeanSquaredError);
-            this.GroupBoxRegression.Location = new System.Drawing.Point(6, 75);
-            this.GroupBoxRegression.Name = "GroupBoxRegression";
-            this.GroupBoxRegression.Size = new System.Drawing.Size(225, 50);
-            this.GroupBoxRegression.TabIndex = 1;
-            this.GroupBoxRegression.TabStop = false;
-            this.GroupBoxRegression.Text = "Regresión";
-            // 
-            // LabelType
-            // 
-            this.LabelType.AutoSize = true;
-            this.LabelType.Location = new System.Drawing.Point(6, 16);
-            this.LabelType.Name = "LabelType";
-            this.LabelType.Size = new System.Drawing.Size(31, 13);
-            this.LabelType.TabIndex = 4;
-            this.LabelType.Text = "Tipo:";
-            // 
-            // LabelTypeValue
-            // 
-            this.LabelTypeValue.AutoSize = true;
-            this.LabelTypeValue.Location = new System.Drawing.Point(32, 16);
-            this.LabelTypeValue.Name = "LabelTypeValue";
-            this.LabelTypeValue.Size = new System.Drawing.Size(27, 13);
-            this.LabelTypeValue.TabIndex = 5;
-            this.LabelTypeValue.Text = "N/A";
-            // 
-            // LabelAccuracy
-            // 
-            this.LabelAccuracy.AutoSize = true;
-            this.LabelAccuracy.Location = new System.Drawing.Point(6, 25);
-            this.LabelAccuracy.Name = "LabelAccuracy";
-            this.LabelAccuracy.Size = new System.Drawing.Size(54, 13);
-            this.LabelAccuracy.TabIndex = 2;
-            this.LabelAccuracy.Text = "Exactitud:";
-            // 
             // LabelAccuracyValue
             // 
             this.LabelAccuracyValue.AutoSize = true;
-            this.LabelAccuracyValue.Location = new System.Drawing.Point(55, 25);
+            this.LabelAccuracyValue.Location = new System.Drawing.Point(55, 16);
             this.LabelAccuracyValue.Name = "LabelAccuracyValue";
             this.LabelAccuracyValue.Size = new System.Drawing.Size(27, 13);
             this.LabelAccuracyValue.TabIndex = 3;
             this.LabelAccuracyValue.Text = "N/A";
             // 
-            // LabelMeanSquaredError
+            // LabelAccuracy
             // 
-            this.LabelMeanSquaredError.AutoSize = true;
-            this.LabelMeanSquaredError.Location = new System.Drawing.Point(6, 25);
-            this.LabelMeanSquaredError.Name = "LabelMeanSquaredError";
-            this.LabelMeanSquaredError.Size = new System.Drawing.Size(118, 13);
-            this.LabelMeanSquaredError.TabIndex = 0;
-            this.LabelMeanSquaredError.Text = "Error Cuadrático Medio:";
+            this.LabelAccuracy.AutoSize = true;
+            this.LabelAccuracy.Location = new System.Drawing.Point(6, 16);
+            this.LabelAccuracy.Name = "LabelAccuracy";
+            this.LabelAccuracy.Size = new System.Drawing.Size(54, 13);
+            this.LabelAccuracy.TabIndex = 2;
+            this.LabelAccuracy.Text = "Exactitud:";
             // 
-            // LabelMeanSquaredErrorValue
+            // GroupBoxKMeansAndKNearestNeighbors
             // 
-            this.LabelMeanSquaredErrorValue.AutoSize = true;
-            this.LabelMeanSquaredErrorValue.Location = new System.Drawing.Point(119, 25);
-            this.LabelMeanSquaredErrorValue.Name = "LabelMeanSquaredErrorValue";
-            this.LabelMeanSquaredErrorValue.Size = new System.Drawing.Size(27, 13);
-            this.LabelMeanSquaredErrorValue.TabIndex = 8;
-            this.LabelMeanSquaredErrorValue.Text = "N/A";
+            this.GroupBoxKMeansAndKNearestNeighbors.Controls.Add(this.NumericUpDownKMeansAndKNearestNeighborsKValue);
+            this.GroupBoxKMeansAndKNearestNeighbors.Controls.Add(this.LabelKMeansAndKNearestNeighborsKValue);
+            this.GroupBoxKMeansAndKNearestNeighbors.Location = new System.Drawing.Point(12, 135);
+            this.GroupBoxKMeansAndKNearestNeighbors.Name = "GroupBoxKMeansAndKNearestNeighbors";
+            this.GroupBoxKMeansAndKNearestNeighbors.Size = new System.Drawing.Size(237, 60);
+            this.GroupBoxKMeansAndKNearestNeighbors.TabIndex = 0;
+            this.GroupBoxKMeansAndKNearestNeighbors.TabStop = false;
+            this.GroupBoxKMeansAndKNearestNeighbors.Text = "K-Means y K-Nearest Neighbors";
+            // 
+            // NumericUpDownKMeansAndKNearestNeighborsKValue
+            // 
+            this.NumericUpDownKMeansAndKNearestNeighborsKValue.Location = new System.Drawing.Point(9, 32);
+            this.NumericUpDownKMeansAndKNearestNeighborsKValue.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NumericUpDownKMeansAndKNearestNeighborsKValue.Name = "NumericUpDownKMeansAndKNearestNeighborsKValue";
+            this.NumericUpDownKMeansAndKNearestNeighborsKValue.Size = new System.Drawing.Size(222, 20);
+            this.NumericUpDownKMeansAndKNearestNeighborsKValue.TabIndex = 5;
+            this.NumericUpDownKMeansAndKNearestNeighborsKValue.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // LabelKMeansAndKNearestNeighborsKValue
+            // 
+            this.LabelKMeansAndKNearestNeighborsKValue.AutoSize = true;
+            this.LabelKMeansAndKNearestNeighborsKValue.Location = new System.Drawing.Point(6, 16);
+            this.LabelKMeansAndKNearestNeighborsKValue.Name = "LabelKMeansAndKNearestNeighborsKValue";
+            this.LabelKMeansAndKNearestNeighborsKValue.Size = new System.Drawing.Size(59, 13);
+            this.LabelKMeansAndKNearestNeighborsKValue.TabIndex = 4;
+            this.LabelKMeansAndKNearestNeighborsKValue.Text = "Valor de K:";
             // 
             // MachineLearningAlgorithms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(944, 551);
+            this.Controls.Add(this.GroupBoxKMeansAndKNearestNeighbors);
             this.Controls.Add(this.GroupBoxEvaluation);
             this.Controls.Add(this.ButtonTrainAlgorithm);
             this.Controls.Add(this.PanelMachineLearningAlgorithm);
@@ -341,19 +384,22 @@
             this.GroupBoxAlgorithms.ResumeLayout(false);
             this.GroupBoxValidationMethodologies.ResumeLayout(false);
             this.GroupBoxValidationMethodologies.PerformLayout();
+            this.GroupBoxKFoldCrossValidation.ResumeLayout(false);
+            this.GroupBoxKFoldCrossValidation.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NumericUpDownKFoldCrossValidationKValue)).EndInit();
             this.GroupBoxHoldOut.ResumeLayout(false);
             this.GroupBoxHoldOut.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumericUpDownPercentageTrainingSet)).EndInit();
-            this.GroupBoxKFoldCrossValidation.ResumeLayout(false);
-            this.GroupBoxKFoldCrossValidation.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NumericUpDownKValue)).EndInit();
             this.GroupBoxClassAttribute.ResumeLayout(false);
             this.GroupBoxClassAttribute.PerformLayout();
             this.GroupBoxEvaluation.ResumeLayout(false);
-            this.GroupBoxClassification.ResumeLayout(false);
-            this.GroupBoxClassification.PerformLayout();
             this.GroupBoxRegression.ResumeLayout(false);
             this.GroupBoxRegression.PerformLayout();
+            this.GroupBoxClassification.ResumeLayout(false);
+            this.GroupBoxClassification.PerformLayout();
+            this.GroupBoxKMeansAndKNearestNeighbors.ResumeLayout(false);
+            this.GroupBoxKMeansAndKNearestNeighbors.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NumericUpDownKMeansAndKNearestNeighborsKValue)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -367,8 +413,8 @@
         private System.Windows.Forms.RadioButton RadioButtonKFoldCrossValidation;
         private System.Windows.Forms.RadioButton RadioButtonHoldOut;
         private System.Windows.Forms.GroupBox GroupBoxKFoldCrossValidation;
-        private System.Windows.Forms.NumericUpDown NumericUpDownKValue;
-        private System.Windows.Forms.Label LabelKValue;
+        private System.Windows.Forms.NumericUpDown NumericUpDownKFoldCrossValidationKValue;
+        private System.Windows.Forms.Label LabelKFoldCrossValidationKValue;
         private System.Windows.Forms.NumericUpDown NumericUpDownPercentageTrainingSet;
         private System.Windows.Forms.Label LabelPercentageTrainingSet;
         private System.Windows.Forms.GroupBox GroupBoxClassAttribute;
@@ -384,5 +430,8 @@
         private System.Windows.Forms.GroupBox GroupBoxClassification;
         private System.Windows.Forms.Label LabelAccuracyValue;
         private System.Windows.Forms.Label LabelAccuracy;
+        private System.Windows.Forms.GroupBox GroupBoxKMeansAndKNearestNeighbors;
+        private System.Windows.Forms.NumericUpDown NumericUpDownKMeansAndKNearestNeighborsKValue;
+        private System.Windows.Forms.Label LabelKMeansAndKNearestNeighborsKValue;
     }
 }

@@ -127,6 +127,12 @@
     <Compile Include="EditAttribute.Designer.cs">
       <DependentUpon>EditAttribute.cs</DependentUpon>
     </Compile>
+    <Compile Include="KIntancesAndKClustersInformation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KIntancesAndKClustersInformation.Designer.cs">
+      <DependentUpon>KIntancesAndKClustersInformation.cs</DependentUpon>
+    </Compile>
     <Compile Include="MachineLearningAlgorithms.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -138,6 +144,12 @@
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OrdinalAttributeNormalization.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrdinalAttributeNormalization.Designer.cs">
+      <DependentUpon>OrdinalAttributeNormalization.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -198,11 +210,17 @@
     <EmbeddedResource Include="EditAttribute.resx">
       <DependentUpon>EditAttribute.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="KIntancesAndKClustersInformation.resx">
+      <DependentUpon>KIntancesAndKClustersInformation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MachineLearningAlgorithms.resx">
       <DependentUpon>MachineLearningAlgorithms.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrdinalAttributeNormalization.resx">
+      <DependentUpon>OrdinalAttributeNormalization.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

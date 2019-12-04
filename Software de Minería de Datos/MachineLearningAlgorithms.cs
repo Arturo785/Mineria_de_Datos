@@ -15,6 +15,9 @@ namespace Software_de_Minería_de_Datos
         // Enum con los algoritmos.
         enum Algorithms { ZeroR, OneR, NaiveBayes, KMeans, KNearestNeighbors }
 
+        // Constantes.
+        const int maximumIterationsWithoutChanges = 10;
+
         // Variables.
         DataTable dataSet;
         DataFile dataSetDataFile;
@@ -109,6 +112,9 @@ namespace Software_de_Minería_de_Datos
                 // Actualizar el atributo clase.
                 UpdateClassAttribute();
 
+                // Fijar el límite de K en "K-Fold Cross Validation".
+                NumericUpDownKFoldCrossValidationKValue.Maximum = dataSet.Rows.Count;
+
                 // Habilitar las herramientas.
                 EnableTools();
             }
@@ -139,18 +145,16 @@ namespace Software_de_Minería_de_Datos
         private void DisableTools()
         {
             // Deshabilitar el "GroupBox" de "Atributo Clase".
-            ComboBoxClassAttribute.Enabled = false;
+            GroupBoxClassAttribute.Enabled = false;
 
             // Deshabilitar el "GroupBox" de "Algoritmos".
-            ComboBoxAlgorithms.Enabled = false;
+            GroupBoxAlgorithms.Enabled = false;
 
-            // Deshabilitar el "GroupBox" de "Atributo Clase".
-            // Hold-Out.
-            RadioButtonHoldOut.Enabled = false;
-            NumericUpDownPercentageTrainingSet.Enabled = false;
-            // K-Fold Cross Validation.
-            RadioButtonKFoldCrossValidation.Enabled = false;
-            NumericUpDownKValue.Enabled = false;
+            // Deshabilitar el "GroupBox" de "Metodologías de Validación".
+            GroupBoxValidationMethodologies.Enabled = false;
+
+            // Deshabilitar el "GroupBox" de "K-Means y K-Nearest Neighbors".
+            GroupBoxKMeansAndKNearestNeighbors.Enabled = false;
 
             // Deshabilitar el botón de "Entrenar Algoritmo".
             ButtonTrainAlgorithm.Enabled = false;
@@ -159,19 +163,16 @@ namespace Software_de_Minería_de_Datos
         private void EnableTools()
         {
             // Habilitar el "GroupBox" de "Atributo Clase".
-            ComboBoxClassAttribute.Enabled = true;
+            GroupBoxClassAttribute.Enabled = true;
 
             // Habilitar el "GroupBox" de "Algoritmos".
-            ComboBoxAlgorithms.Enabled = true;
+            GroupBoxAlgorithms.Enabled = true;
 
-            // Habilitar el "GroupBox" de "Atributo Clase".
-            // Hold-Out.
-            RadioButtonHoldOut.Enabled = true;
-            NumericUpDownPercentageTrainingSet.Enabled = true;
-            // K-Fold Cross Validation.
-            RadioButtonKFoldCrossValidation.Enabled = true;
-            NumericUpDownKValue.Enabled = true;
-            NumericUpDownKValue.Maximum = dataSet.Rows.Count;
+            // Habilitar el "GroupBox" de "Metodologías de Validación".
+            GroupBoxValidationMethodologies.Enabled = true;
+
+            // Deshabilitar el "GroupBox" de "K-Means y K-Nearest Neighbors".
+            GroupBoxKMeansAndKNearestNeighbors.Enabled = true;
 
             // Habilitar el botón de "Entrenar Algoritmo".
             ButtonTrainAlgorithm.Enabled = true;
@@ -259,18 +260,29 @@ namespace Software_de_Minería_de_Datos
                         // Agregar Form "ConfusionMatrices" al panel.
                         PanelMachineLearningAlgorithm.Controls.Add(confusionMatricesForm);
 
-                        // Verificar el tipo del atributo clase.
-                        if (classAttribute.GetDataTypeIndex() == DataFileAttribute.AttributeDataType.Numeric)
+                        // Verificar el tipo del archivo.
+                        if (dataSetDataFile == null)
                         {
-                            // El atributo es numérico.
-                            // Obtener el error cuadrático medio.
-                            LabelMeanSquaredErrorValue.Text = GetAverageMeanSquaredError(confusionMatrix, new List<DataTable>() { holdOutSets[1] }).ToString(); 
+                            // Archivo CSV.
+                            // Obtener exactitud.
+                            LabelAccuracyValue.Text = confusionMatricesForm.ConfusionMatricesAccuracy[0].ToString();
                         }
                         else
                         {
-                            // El atributo es categórico.
-                            // Obtener exactitud.
-                            LabelAccuracyValue.Text = confusionMatricesForm.ConfusionMatricesAccuracy[0].ToString();
+                            // Archivo DATA.
+                            // Verificar el tipo del atributo clase.
+                            if (classAttribute.GetDataTypeIndex() == DataFileAttribute.AttributeDataType.Numeric)
+                            {
+                                // El atributo es numérico.
+                                // Obtener el error cuadrático medio.
+                                LabelMeanSquaredErrorValue.Text = GetAverageMeanSquaredError(confusionMatrix, new List<DataTable>() { holdOutSets[1] }).ToString();
+                            }
+                            else
+                            {
+                                // El atributo es categórico.
+                                // Obtener exactitud.
+                                LabelAccuracyValue.Text = confusionMatricesForm.ConfusionMatricesAccuracy[0].ToString();
+                            }
                         }
                     }
                     else
@@ -307,18 +319,29 @@ namespace Software_de_Minería_de_Datos
                         // Agregar Form "ConfusionMatrices" al panel.
                         PanelMachineLearningAlgorithm.Controls.Add(confusionMatricesForm);
 
-                        // Verificar el tipo del atributo clase.
-                        if (classAttribute.GetDataTypeIndex() == DataFileAttribute.AttributeDataType.Numeric)
+                        // Verificar el tipo del archivo.
+                        if (dataSetDataFile == null)
                         {
-                            // El atributo es numérico.
-                            // Obtener el error cuadrático medio.
-                            LabelMeanSquaredErrorValue.Text = GetAverageMeanSquaredError(confusionMatrices, mergedKFoldSets).ToString();
+                            // Archivo CSV.
+                            // Obtener exactitud.
+                            LabelAccuracyValue.Text = confusionMatricesForm.ConfusionMatricesAccuracy.Average().ToString();
                         }
                         else
                         {
-                            // El atributo es categórico.
-                            // Obtener exactitud.
-                            LabelAccuracyValue.Text = confusionMatricesForm.ConfusionMatricesAccuracy.Average().ToString();
+                            // Archivo DATA.
+                            // Verificar el tipo del atributo clase.
+                            if (classAttribute.GetDataTypeIndex() == DataFileAttribute.AttributeDataType.Numeric)
+                            {
+                                // El atributo es numérico.
+                                // Obtener el error cuadrático medio.
+                                LabelMeanSquaredErrorValue.Text = GetAverageMeanSquaredError(confusionMatrices, mergedKFoldSets).ToString();
+                            }
+                            else
+                            {
+                                // El atributo es categórico.
+                                // Obtener exactitud.
+                                LabelAccuracyValue.Text = confusionMatricesForm.ConfusionMatricesAccuracy.Average().ToString();
+                            }
                         }
                     }
 
@@ -359,18 +382,29 @@ namespace Software_de_Minería_de_Datos
                         // Agregar Form "ConfusionMatrices" al panel.
                         PanelMachineLearningAlgorithm.Controls.Add(confusionMatricesForm);
 
-                        // Verificar el tipo del atributo clase.
-                        if (classAttribute.GetDataTypeIndex() == DataFileAttribute.AttributeDataType.Numeric)
+                        // Verificar el tipo del archivo.
+                        if (dataSetDataFile == null)
                         {
-                            // El atributo es numérico.
-                            // Obtener el error cuadrático medio.
-                            LabelMeanSquaredErrorValue.Text = GetAverageMeanSquaredError(confusionMatrix, new List<DataTable>() { holdOutSets[1] }).ToString();
+                            // Archivo CSV.
+                            // Obtener exactitud.
+                            LabelAccuracyValue.Text = confusionMatricesForm.ConfusionMatricesAccuracy[0].ToString();
                         }
                         else
                         {
-                            // El atributo es categórico.
-                            // Obtener exactitud.
-                            LabelAccuracyValue.Text = confusionMatricesForm.ConfusionMatricesAccuracy[0].ToString();
+                            // Archivo DATA.
+                            // Verificar el tipo del atributo clase.
+                            if (classAttribute.GetDataTypeIndex() == DataFileAttribute.AttributeDataType.Numeric)
+                            {
+                                // El atributo es numérico.
+                                // Obtener el error cuadrático medio.
+                                LabelMeanSquaredErrorValue.Text = GetAverageMeanSquaredError(confusionMatrix, new List<DataTable>() { holdOutSets[1] }).ToString();
+                            }
+                            else
+                            {
+                                // El atributo es categórico.
+                                // Obtener exactitud.
+                                LabelAccuracyValue.Text = confusionMatricesForm.ConfusionMatricesAccuracy[0].ToString();
+                            }
                         }
                     }
                     else
@@ -407,27 +441,183 @@ namespace Software_de_Minería_de_Datos
                         // Agregar Form "ConfusionMatrices" al panel.
                         PanelMachineLearningAlgorithm.Controls.Add(confusionMatricesForm);
 
-                        // Verificar el tipo del atributo clase.
-                        if (classAttribute.GetDataTypeIndex() == DataFileAttribute.AttributeDataType.Numeric)
+                        // Verificar el tipo del archivo.
+                        if (dataSetDataFile == null)
                         {
-                            // El atributo es numérico.
-                            // Obtener el error cuadrático medio.
-                            LabelMeanSquaredErrorValue.Text = GetAverageMeanSquaredError(confusionMatrices, mergedKFoldSets).ToString();
+                            // Archivo CSV.
+                            // Obtener exactitud.
+                            LabelAccuracyValue.Text = confusionMatricesForm.ConfusionMatricesAccuracy.Average().ToString();
                         }
                         else
                         {
-                            // El atributo es categórico.
-                            // Obtener exactitud.
-                            LabelAccuracyValue.Text = confusionMatricesForm.ConfusionMatricesAccuracy.Average().ToString();
+                            // Archivo DATA.
+                            // Verificar el tipo del atributo clase.
+                            if (classAttribute.GetDataTypeIndex() == DataFileAttribute.AttributeDataType.Numeric)
+                            {
+                                // El atributo es numérico.
+                                // Obtener el error cuadrático medio.
+                                LabelMeanSquaredErrorValue.Text = GetAverageMeanSquaredError(confusionMatrices, mergedKFoldSets).ToString();
+                            }
+                            else
+                            {
+                                // El atributo es categórico.
+                                // Obtener exactitud.
+                                LabelAccuracyValue.Text = confusionMatricesForm.ConfusionMatricesAccuracy.Average().ToString();
+                            }
                         }
                     }
 
                     break;
 
                 case Algorithms.NaiveBayes:
+
+                    // Algoritmo Naïve Bayes.
+                    // Verificar el tipo de metodología a utilizar.
+                    if (RadioButtonHoldOut.Checked)
+                    {
+                        // Hold-Out.
+                        // Obtener los conjuntos.
+                        List<DataTable> holdOutSets = HoldOut();
+
+                        // Verificar que los conjuntos se hayan obtenido correctamente.
+                        if (holdOutSets == null)
+                        {
+                            // Los conjuntos no se obtuvieron correctamente.
+                            return;
+                        }
+
+                        // Restaurar las herramientas y variables necesarias al generar un modelo.
+                        SoftResetToolsAndVariables();
+
+                        // Obtener la matriz de confusión con los conjuntos.
+                        List<DataTable> confusionMatrix = new List<DataTable>() { NaiveBayes(holdOutSets[0], holdOutSets[1]) };
+
+                        // Inicializar Form "ConfusionMatrices".
+                        ConfusionMatrices confusionMatricesForm = new ConfusionMatrices(confusionMatrix)
+                        {
+                            TopLevel = false,
+                            Visible = true,
+                            FormBorderStyle = FormBorderStyle.None,
+                            Dock = DockStyle.Fill
+                        };
+
+                        // Agregar Form "ConfusionMatrices" al panel.
+                        PanelMachineLearningAlgorithm.Controls.Add(confusionMatricesForm);
+
+                        // Verificar el tipo del archivo.
+                        if (dataSetDataFile == null)
+                        {
+                            // Archivo CSV.
+                            // Obtener exactitud.
+                            LabelAccuracyValue.Text = confusionMatricesForm.ConfusionMatricesAccuracy[0].ToString();
+                        }
+                        else
+                        {
+                            // Archivo DATA.
+                            // Verificar el tipo del atributo clase.
+                            if (classAttribute.GetDataTypeIndex() == DataFileAttribute.AttributeDataType.Numeric)
+                            {
+                                // El atributo es numérico.
+                                // Obtener el error cuadrático medio.
+                                LabelMeanSquaredErrorValue.Text = GetAverageMeanSquaredError(confusionMatrix, new List<DataTable>() { holdOutSets[1] }).ToString();
+                            }
+                            else
+                            {
+                                // El atributo es categórico.
+                                // Obtener exactitud.
+                                LabelAccuracyValue.Text = confusionMatricesForm.ConfusionMatricesAccuracy[0].ToString();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        // K-Fold Cross Validation.
+                        // Obtener los conjuntos.
+                        List<DataTable> kFoldSets = KFoldCrossValidation();
+
+                        // Restaurar las herramientas y variables necesarias al generar un modelo.
+                        SoftResetToolsAndVariables();
+
+                        // Lista para almacenar la matriz de confusión de cada "K".
+                        List<DataTable> confusionMatrices = new List<DataTable>();
+
+                        // Lista para almacenar los conjuntos unidos.
+                        List<DataTable> mergedKFoldSets = new List<DataTable>();
+
+                        // Obtener la matriz de confusión de cada "K".
+                        foreach (DataTable kSet in kFoldSets)
+                        {
+                            mergedKFoldSets.Add(MergeSets(kFoldSets, kSet));
+                            confusionMatrices.Add(NaiveBayes(kSet, mergedKFoldSets[mergedKFoldSets.Count - 1]));
+                        }
+
+                        // Inicializar Form "ConfusionMatrices".
+                        ConfusionMatrices confusionMatricesForm = new ConfusionMatrices(confusionMatrices)
+                        {
+                            TopLevel = false,
+                            Visible = true,
+                            FormBorderStyle = FormBorderStyle.None,
+                            Dock = DockStyle.Fill
+                        };
+
+                        // Agregar Form "ConfusionMatrices" al panel.
+                        PanelMachineLearningAlgorithm.Controls.Add(confusionMatricesForm);
+
+                        // Verificar el tipo del archivo.
+                        if (dataSetDataFile == null)
+                        {
+                            // Archivo CSV.
+                            // Obtener exactitud.
+                            LabelAccuracyValue.Text = confusionMatricesForm.ConfusionMatricesAccuracy.Average().ToString();
+                        }
+                        else
+                        {
+                            // Archivo DATA.
+                            // Verificar el tipo del atributo clase.
+                            if (classAttribute.GetDataTypeIndex() == DataFileAttribute.AttributeDataType.Numeric)
+                            {
+                                // El atributo es numérico.
+                                // Obtener el error cuadrático medio.
+                                LabelMeanSquaredErrorValue.Text = GetAverageMeanSquaredError(confusionMatrices, mergedKFoldSets).ToString();
+                            }
+                            else
+                            {
+                                // El atributo es categórico.
+                                // Obtener exactitud.
+                                LabelAccuracyValue.Text = confusionMatricesForm.ConfusionMatricesAccuracy.Average().ToString();
+                            }
+                        }
+                    }
+
                     break;
 
                 case Algorithms.KMeans:
+
+                    // Algoritmo K-Means.
+                    // Verificar si el archivo es de tipo CSV.
+                    if (dataSetDataFile == null)
+                    {
+                        // El archivo es de tipo CSV.
+                        // Desplegar mensaje de error y abortar.
+                        MessageBox.Show("El conjunto de datos no tiene atributos numéricos u ordinales.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    // Restaurar las herramientas y variables necesarias al generar un modelo.
+                    SoftResetToolsAndVariables();
+
+                    // Inicializar Form "KIntancesAndKClustersInformation".
+                    KInstancesAndClustersInformation kInstancesAndClustersInformationForm = new KInstancesAndClustersInformation(KMeans())
+                    {
+                        TopLevel = false,
+                        Visible = true,
+                        FormBorderStyle = FormBorderStyle.None,
+                        Dock = DockStyle.Fill
+                    };
+
+                    // Agregar Form "KIntancesAndKClustersInformation" al panel.
+                    PanelMachineLearningAlgorithm.Controls.Add(kInstancesAndClustersInformationForm);
+
                     break;
 
                 case Algorithms.KNearestNeighbors:
@@ -674,6 +864,741 @@ namespace Software_de_Minería_de_Datos
             return confusionMatrix;
         }
 
+        private DataTable NaiveBayes(DataTable trainingSet, DataTable testingSet)
+        {
+            // Variables.
+            DataTable confusionMatrix = new DataTable();
+            double[,] confusionMatrixValues;
+            List<double[,]> frequencyTables = new List<double[,]>();
+            List<double[,]> probabilityTables = new List<double[,]>();
+            List<int[,]> numericalFrequencyTablesRowIndices = new List<int[,]>();
+            List<Dictionary<string, int>> attributeTablesDictionaries = new List<Dictionary<string, int>>();
+            List<string> modelPredictions = new List<string>();
+            List<string> objectiveValues = new List<string>();
+
+            // Obtener los posibles valores para el atributo clase.
+            var classAttributePossibleValues = GetAttributePossibleValues(trainingSet.Columns[ComboBoxClassAttribute.SelectedIndex]);
+
+            // Inicializar la matriz de confusión.
+            confusionMatrixValues = new double[classAttributePossibleValues.Count(), classAttributePossibleValues.Count()];
+
+            // Inicializar la "DataTable" con la matriz de confusión.
+            for (int i = 0; i < classAttributePossibleValues.Count(); i++)
+            {
+                // Obtener los valores posibles.
+                var possibleValue = classAttributePossibleValues.ElementAt(i);
+
+                // Agregar a la matriz una columna y fila.
+                confusionMatrix.Columns.Add(possibleValue.Key);
+                confusionMatrix.Rows.Add();
+            }
+
+            // Crear una tabla de frecuencia y de probabilidad por cada atributo.
+            for (int i = 0; i < trainingSet.Columns.Count; i++)
+            {
+                // Obtener el atributo actual.
+                DataColumn attribute = trainingSet.Columns[i];
+
+                // Obtener los posibles valores del atributo actual.
+                var attributePossibleValues = GetAttributePossibleValues(attribute);
+
+                // Crear los diccionarios para el atributo actual.
+                Dictionary<string, int> frequencyTableDictionary = new Dictionary<string, int>();
+                Dictionary<int, string> frequencyTableReverseDictionary = new Dictionary<int, string>();
+
+                // Llenar los diccionarios.
+                for (int j = 0; j < attributePossibleValues.Count(); j++)
+                {
+                    // Obtener un posible valor del atributo actual.
+                    var possibleValue = attributePossibleValues.ElementAt(j);
+
+                    // Insertar las entradas en los diccionarios.
+                    frequencyTableDictionary.Add(possibleValue.Key, j);
+                    frequencyTableReverseDictionary.Add(j, possibleValue.Key);
+                }
+
+                // Insertar el diccionario del atributo en la lista.
+                attributeTablesDictionaries.Add(frequencyTableDictionary);
+
+                // Verificar si el atributo actual es el atributo clase.
+                if (attribute == trainingSet.Columns[ComboBoxClassAttribute.SelectedIndex])
+                {
+                    // El atributo actual es el atributo clase.
+                    // Crear la tabla de frecuencia y de probabilidad para el atributo clase.
+                    frequencyTables.Add(new double[1, classAttributePossibleValues.Count()]);
+                    probabilityTables.Add(new double[1, classAttributePossibleValues.Count()]);
+                    numericalFrequencyTablesRowIndices.Add(new int[0, 0]);
+                }
+                else
+                {
+                    // El atributo actual no es el atributo clase.
+                    // Verificar el tipo del archivo.
+                    if (dataSetDataFile == null)
+                    {
+                        // Archivo CSV.
+                        // Crear la tabla de frecuencia y de probabilidad para el atributo actual.
+                        frequencyTables.Add(new double[attributePossibleValues.Count(), classAttributePossibleValues.Count()]);
+                        probabilityTables.Add(new double[attributePossibleValues.Count(), classAttributePossibleValues.Count()]);
+                        numericalFrequencyTablesRowIndices.Add(new int[0, 0]);
+                    }
+                    else
+                    {
+                        // Archivo DATA.
+                        // Verificar el tipo del atributo.
+                        if (dataSetDataFile.Attributes[i].GetDataTypeIndex() == DataFileAttribute.AttributeDataType.Numeric)
+                        {
+                            // Atributo numérico.
+                            // Crear la tabla de frecuencia y de probabilidad para el atributo actual.
+                            frequencyTables.Add(new double[trainingSet.Rows.Count, classAttributePossibleValues.Count()]);
+                            probabilityTables.Add(new double[2, classAttributePossibleValues.Count()]);
+                            numericalFrequencyTablesRowIndices.Add(new int[1, classAttributePossibleValues.Count()]);
+                        }
+                        else
+                        {
+                            // Atributo categórico.
+                            // Crear la tabla de frecuencia y de probabilidad para el atributo actual.
+                            frequencyTables.Add(new double[attributePossibleValues.Count(), classAttributePossibleValues.Count()]);
+                            probabilityTables.Add(new double[attributePossibleValues.Count(), classAttributePossibleValues.Count()]);
+                            numericalFrequencyTablesRowIndices.Add(new int[0, 0]);
+                        }
+                    }
+                }
+            }
+
+            // Llenar las tablas de frecuencia y de probabilidad.
+            foreach (DataRow instance in trainingSet.Rows)
+            {
+                // Recorrer todos los atributos en la instancia actual.
+                for (int i = 0; i < trainingSet.Columns.Count; i++)
+                {
+                    // Verificar si el atributo actual no es el atributo clase.
+                    if (i == ComboBoxClassAttribute.SelectedIndex)
+                    {
+                        // El atributo actual es el atributo clase.
+                        // Obtener el índice.
+                        int column = attributeTablesDictionaries[ComboBoxClassAttribute.SelectedIndex][instance[ComboBoxClassAttribute.SelectedIndex].ToString()];
+                        
+                        // Agregar una unidad a la casilla de la tabla de frecuencia y de probabilidad.
+                        frequencyTables[i][0, column]++;
+                        probabilityTables[i][0, column]++;
+                    }
+                    else
+                    {
+                        // El atributo actual no es el atributo clase.
+                        // Verificar el tipo de archivo.
+                        if (dataSetDataFile == null)
+                        {
+                            // Archivo CSV.
+                            // Obtener los índices.
+                            int row = attributeTablesDictionaries[i][instance[i].ToString()];
+                            int column = attributeTablesDictionaries[ComboBoxClassAttribute.SelectedIndex][instance[ComboBoxClassAttribute.SelectedIndex].ToString()];
+
+                            // Agregar una unidad a la casilla de la tabla de frecuencia.
+                            frequencyTables[i][row, column]++;
+                            probabilityTables[i][row, column]++;
+                        }
+                        else
+                        {
+                            // Archivo DATA.
+                            // Verificar el tipo del atributo.
+                            if (dataSetDataFile.Attributes[i].GetDataTypeIndex() == DataFileAttribute.AttributeDataType.Numeric)
+                            {
+                                // Atributo numérico.
+                                // Obtener los índices.
+                                int column = attributeTablesDictionaries[ComboBoxClassAttribute.SelectedIndex][instance[ComboBoxClassAttribute.SelectedIndex].ToString()];
+                                int row = numericalFrequencyTablesRowIndices[i][0, column]++;
+
+                                // Agregar una unidad a la casilla de la tabla de frecuencia.
+                                frequencyTables[i][row, column] = Convert.ToDouble(instance[i]);
+                            }
+                            else
+                            {
+                                // Atributo categórico.
+                                // Obtener los índices.
+                                int row = attributeTablesDictionaries[i][instance[i].ToString()];
+                                int column = attributeTablesDictionaries[ComboBoxClassAttribute.SelectedIndex][instance[ComboBoxClassAttribute.SelectedIndex].ToString()];
+
+                                // Agregar una unidad a la casilla de la tabla de frecuencia.
+                                frequencyTables[i][row, column]++;
+                                probabilityTables[i][row, column]++;
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Calcular las probabilidades de cada valor de cada atributo con respecto a la clase.
+            for (int i = 0; i < probabilityTables.Count; i++)
+            {
+                // Obtener la tabla de probabilidad actual.
+                double[,] probabilityTable = probabilityTables[i];
+
+                // Verificar si la tabla de probabilidad actual pertenece al atributo clase.
+                if (i == ComboBoxClassAttribute.SelectedIndex)
+                {
+                    // La tabla de probabilidad actual pertenece al atributo clase.
+                    // Dividir cada columna sobre el número de instancias del conjunto de entrenamiento.
+                    for (int j = 0; j < probabilityTable.GetLength(1); j++)
+                    {
+                        probabilityTable[0, j] /= trainingSet.Rows.Count;
+                    }
+                }
+                else
+                {
+                    // La tabla de probabilidad actual no pertenece al atributo clase.
+                    // Verificar el tipo de archivo.
+                    if (dataSetDataFile == null)
+                    {
+                        // Archivo CSV.
+                        // Iterar sobre las columnas de la tabla.
+                        for (int k = 0; k < probabilityTable.GetLength(1); k++)
+                        {
+                            // Iterar sobre las filas de la tabla.
+                            for (int j = 0; j < probabilityTable.GetLength(0); j++)
+                            {
+                                // Dividir cada columna sobre el número de instancias para la misma columna en el atributo clase.
+                                probabilityTable[j, k] = (probabilityTable[j, k] + 1) / (frequencyTables[ComboBoxClassAttribute.SelectedIndex][0, k] + 1);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        // Archivo DATA.
+                        // Verificar el tipo del atributo.
+                        if (dataSetDataFile.Attributes[i].GetDataTypeIndex() == DataFileAttribute.AttributeDataType.Numeric)
+                        {
+                            // Atributo numérico.
+                            // Obtener la tabla de frecuencia del atributo numérico.
+                            double[,] frequencyTable = frequencyTables[i];
+
+                            // Iterar sobre las columnas de la tabla.
+                            for (int k = 0; k < frequencyTable.GetLength(1); k++)
+                            {
+                                // Lista para almacenar los valores del atributo en cada valor de la clase.
+                                List<double> attributeClassValues = new List<double>();
+
+                                // Iterar sobre las filas de la tabla.
+                                for (int j = 0; j < numericalFrequencyTablesRowIndices[i][0, k]; j++)
+                                {
+                                    // Agregar el valor del atributo a la lista.
+                                    attributeClassValues.Add(frequencyTable[j, k]);
+                                }
+
+                                // Obtener la media y la desviación estándar de los valores.
+                                probabilityTable[0, k] = attributeClassValues.Count == 0 ? 0 : attributeClassValues.Average();
+                                probabilityTable[1, k] = GetStandardDeviation(attributeClassValues);
+                            }
+                        }
+                        else
+                        {
+                            // Atributo categórico.
+                            // Iterar sobre las columnas de la tabla.
+                            for (int k = 0; k < probabilityTable.GetLength(1); k++)
+                            {
+                                // Iterar sobre las filas de la tabla.
+                                for (int j = 0; j < probabilityTable.GetLength(0); j++)
+                                {
+                                    // Dividir cada columna sobre el número de instancias para la misma columna en el atributo clase.
+                                    probabilityTable[j, k] = (probabilityTable[j, k] + 1) / (frequencyTables[ComboBoxClassAttribute.SelectedIndex][0, k] + 1);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Predecir la clase para cada instancia en el conjunto de prueba.
+            foreach (DataRow instance in testingSet.Rows)
+            {
+                // Lista para almacenar la probabilidad de las clases.
+                List<double> classProbabilities = new List<double>();
+
+                // Obtener la probabilidad de cada clase.
+                foreach (var possibleValue in classAttributePossibleValues)
+                {
+                    // Variable para calcular la probabilidad.
+                    double classProbability = 1;
+
+                    // Obtener la probabilidad de cada valor de cada atributo en la instancia actual.
+                    for (int i = 0; i < testingSet.Columns.Count; i++)
+                    {
+                        // Verificar si el atributo actual es el atributo clase.
+                        if (i == ComboBoxClassAttribute.SelectedIndex)
+                        {
+                            // El atributo actual es el atributo clase.
+                            // Obtener la probabilidad del valor del atributo con la clase actual.
+                            classProbability *= probabilityTables[i][0, attributeTablesDictionaries[i][possibleValue.Key]];
+                        }
+                        else
+                        {
+                            // El atributo actual no es el atributo clase.
+                            // Verificar el tipo del archivo.
+                            if (dataSetDataFile == null)
+                            {
+                                // Archivo CSV.
+                                // Obtener los índices de la probabilidad del valor del atributo con la clase actual.
+                                int row = attributeTablesDictionaries[i][instance[i].ToString()];
+                                int column = attributeTablesDictionaries[ComboBoxClassAttribute.SelectedIndex][possibleValue.Key];
+
+                                // // Obtener la probabilidad del valor del atributo con la clase actual.
+                                classProbability *= probabilityTables[i][row, column];
+                            }
+                            else
+                            {
+                                // Archivo DATA.
+                                // Verificar el tipo del atributo.
+                                if (dataSetDataFile.Attributes[i].GetDataTypeIndex() == DataFileAttribute.AttributeDataType.Numeric)
+                                {
+                                    // Atributo numérico.
+                                    // Obtener el índice de la clase actual.
+                                    int column = attributeTablesDictionaries[ComboBoxClassAttribute.SelectedIndex][possibleValue.Key];
+
+                                    // Obtener la media y la desviación estandar de la tabla de probabilidad del atributo.
+                                    double mean = probabilityTables[i][0, column];
+                                    double standardDeviation = probabilityTables[i][1, column]; ;
+
+                                    // Obtener la probabilidad del valor del atributo con la clase actual.
+                                    classProbability *= GetDensityFunction(Convert.ToDouble(instance[i]), mean, standardDeviation);
+                                }
+                                else
+                                {
+                                    // Atributo categórico.
+                                    // Obtener los índices de la probabilidad del valor del atributo con la clase actual.
+                                    int row = attributeTablesDictionaries[i][instance[i].ToString()];
+                                    int column = attributeTablesDictionaries[ComboBoxClassAttribute.SelectedIndex][possibleValue.Key];
+
+                                    // Obtener la probabilidad del valor del atributo con la clase actual.
+                                    classProbability *= probabilityTables[i][row, column];
+                                }
+                            }
+                        }
+                    }
+
+                    // Agregar la probabilida de la clase con la instancia a la lista.
+                    classProbabilities.Add(classProbability);
+                }
+
+                // Agregar a lista el valor objetivo de la clase en la instancia.
+                objectiveValues.Add(instance[ComboBoxClassAttribute.SelectedIndex].ToString());
+
+                // Agregar a lista de predicciones la clase predicha por el modelo.
+                modelPredictions.Add(classAttributePossibleValues.ElementAt(classProbabilities.IndexOf(classProbabilities.Max())).Key);
+            }
+
+            // Construir la matriz de confusión.
+            for (int i = 0; i < objectiveValues.Count; i++)
+            {
+                // Obtener los índices de la matriz de confusión.
+                int row = attributeTablesDictionaries[ComboBoxClassAttribute.SelectedIndex][modelPredictions[i]];
+                int column = attributeTablesDictionaries[ComboBoxClassAttribute.SelectedIndex][objectiveValues[i]];
+
+                //// Sumar una unidad en la casilla [modelo, objetivo].
+                confusionMatrixValues[row, column]++;
+            }
+
+            // Llenar la "DataTable" con la matriz de confusión.
+            for (int i = 0; i < confusionMatrix.Rows.Count; i++)
+            {
+                for (int j = 0; j < confusionMatrix.Columns.Count; j++)
+                {
+                    confusionMatrix.Rows[i][j] = confusionMatrixValues[i, j].ToString();
+                }
+            }
+
+            // Retornar la matriz de confusión.
+            return confusionMatrix;
+        }
+
+        private double GetStandardDeviation(List<double> values)
+        {
+            // Variables.
+            double mean = values.Count == 0 ? 0 : values.Average();
+            double standardDeviation = Math.Sqrt(values.Sum(value => Math.Pow(value - mean, 2)) / values.Count);
+
+            // Verificar si la desviación estándar es válida.
+            if (double.IsNaN(standardDeviation))
+            {
+                // La desviación estándar es inválida.
+                // Retornar 0.
+                return 0;
+            }
+            else
+            {
+                // La desviación estándar es válida.
+                // Retornar la desviación estándar del conjunto de valores.
+                return standardDeviation;
+            }
+        }
+
+        private double GetDensityFunction(double x, double mean, double standardDeviation)
+        {
+            // Retornar la función de densidad.
+            return 1 / (Math.Sqrt(2 * Math.PI) * standardDeviation) * Math.Pow(Math.E, - (Math.Pow(x - mean, 2) / (2 * Math.Pow(standardDeviation, 2))));
+        }
+
+        private List<List<DataTable>> KMeans()
+        {
+            // Variables.
+            List<DataTable> kInstances = new List<DataTable>();
+            List<DataTable> kClusters = new List<DataTable>();
+            Random numberGenerator = new Random();
+            List<int> numericalAttributesIndices = new List<int>();
+            List<int> ordinalAttributesIndices = new List<int>();
+            List<List<double>> numericalAttributesValues = new List<List<double>>();
+            List<List<double>> ordinalAttributesValues = new List<List<double>>();
+            List<List<int>> kClustersIndices = new List<List<int>>();
+            int iterationsWithoutChanges = 0;
+
+
+            // Obtener los índices de los atributos numéricos u ordinales.
+            for (int i = 0; i < dataSet.Columns.Count; i++)
+            {
+                // Obtener el atributo actual.
+                DataFileAttribute attribute = dataSetDataFile.Attributes[i];
+
+                // Verificar si el atributo es numérico.
+                if (attribute.GetDataTypeIndex() == DataFileAttribute.AttributeDataType.Numeric)
+                {
+                    // El atributo es numérico.
+                    // Agregar el índice del atributo a la lista.
+                    numericalAttributesIndices.Add(i);
+                }
+                else
+                {
+                    // El atributo no es numérico.
+                    // Verificar si el atributo es ordinal.
+                    if (attribute.GetDataTypeIndex() == DataFileAttribute.AttributeDataType.Ordinal)
+                    {
+                        // El atributo es ordinal.
+                        // Agregar el índice del atributo a la lista.
+                        ordinalAttributesIndices.Add(i);
+                    }
+                }
+            }
+
+            // Verificar si no hay atributos numéricos u ordinales.
+            if (numericalAttributesIndices.Count == 0 && ordinalAttributesIndices.Count == 0)
+            {
+                // No hay atributos numéricos u ordinales.
+                MessageBox.Show("El conjunto de datos no tiene atributos numéricos u ordinales.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+
+            // Obtener los valores de los atributos numéricos.
+            foreach (int index in numericalAttributesIndices)
+            {
+                // Lista para almacenar los valores del atributo.
+                List<double> attributeValues = new List<double>();
+
+                // Recorrer todas las instancias del conjunto de datos.
+                foreach (DataRow instance in dataSet.Rows)
+                {
+                    // Verificar que el valor sea numérico.
+                    if (double.TryParse(instance[index].ToString(), out double parsedValue))
+                    {
+                        // El valor es numérico.
+                        // Agregar el valor a lista.
+                        attributeValues.Add(parsedValue);
+                    }
+                    else
+                    {
+                        // El valor no es numérico.
+                        // Desplegar mensaje de error y abortar.
+                        MessageBox.Show("El atributo \"" + dataSet.Columns[index].Caption + "\" tiene valores inválidos (\"" + instance[index] + "\").", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return null;
+                    }
+                }
+
+                // Agregar los valores del atributo a la lista.
+                numericalAttributesValues.Add(attributeValues);
+            }
+
+            // Obtener los valores de los atributos ordinales.
+            foreach (int index in ordinalAttributesIndices)
+            {
+                // Obtener los posibles valores para el atributo ordinal.
+                var ordinalAttributePossibleValues = GetAttributePossibleValues(dataSet.Columns[index]);
+
+                // Utilizar un "Form" para obtener el valor numérico de cada atributo.
+                using (OrdinalAttributeNormalization ordinalAttributeNormalizationForm = new OrdinalAttributeNormalization(ordinalAttributePossibleValues))
+                {
+                    // Mostrar el "Form".
+                    if (ordinalAttributeNormalizationForm.ShowDialog() == DialogResult.OK)
+                    {
+                        // Crear un diccionario para el atributo ordinal.
+                        Dictionary<string, double> ordinalAttributeDictionary = new Dictionary<string, double>();
+
+                        // Lista para almacenar los valores del atributo.
+                        List<double> attributeValues = new List<double>();
+
+                        // Obtener la lista de los valores numéricos del atributo.
+                        List<int> numericalValues = ordinalAttributeNormalizationForm.OrdinalAttributePossibleValuesNumericalValues;
+
+                        // Normalizar los valores del atributo ordinal e insertarlos en el diccionario.
+                        for (int i = 0; i < ordinalAttributePossibleValues.Count(); i++)
+                        {
+                            ordinalAttributeDictionary.Add(ordinalAttributePossibleValues.ElementAt(i).Key, GetNumericalValueNormalization(numericalValues[i], numericalValues.Count));
+                        }
+
+                        // Normalizar el conjunto de datos.
+                        foreach (DataRow instance in dataSet.Rows)
+                        {
+                            attributeValues.Add(ordinalAttributeDictionary[instance[index].ToString()]);
+                        }
+
+                        // Agregar los valores del atributo a la lista.
+                        ordinalAttributesValues.Add(attributeValues);
+                    }
+                }
+            }
+
+            // Crear las K instancias.
+            for (int i = 0; i < NumericUpDownKMeansAndKNearestNeighborsKValue.Value; i++)
+            {
+                // Crear una "DataTable" para la instancia K.
+                DataTable kInstance = dataSet.Clone();
+
+                // Crear una fila para la instancia.
+                DataRow kInstanceValues = kInstance.NewRow();
+
+                // Generar un valor aleatorio para cada atributo numérico.
+                for (int j = 0; j < numericalAttributesIndices.Count; j++)
+                {
+                    List<double> attributeValues = numericalAttributesValues[j];
+
+                    kInstanceValues[numericalAttributesIndices[j]] = GenerateRandomDouble(numberGenerator, attributeValues.Min(), attributeValues.Max());
+                }
+
+                // Generar un valor aleatorio para cada atributo ordinal.
+                for (int j = 0; j < ordinalAttributesIndices.Count; j++)
+                {
+                    List<double> attributeValues = ordinalAttributesValues[j];
+
+                    kInstanceValues[ordinalAttributesIndices[j]] = GenerateRandomDouble(numberGenerator, attributeValues.Min(), attributeValues.Max());
+                }
+
+                // Insertar el arreglo de valores en la "DataTable".
+                kInstance.Rows.Add(kInstanceValues);
+
+                // Agregar la "DataTable" a la lista.
+                kInstances.Add(kInstance);
+
+                // Agregar una "DataTable" a la lista de clústeres.
+                kClusters.Add(dataSet.Clone());
+
+                // Agregar una lista a la lita de listas índices.
+                kClustersIndices.Add(new List<int>());
+            }
+
+            // Construir los clústeres hasta que no haya cambios en ellos 10 veces seguidas.
+            do
+            {
+                // Variable para determinar si se realizó un cambio en los clústeres.
+                bool changesMade = false;
+
+                // Lista para almacenar las posibles instancias asignadas a los clústeres.
+                List<List<int>> possibleKClustersIndices = new List<List<int>>();
+
+                // Llenar la lista de posibles instancias.
+                for (int i = 0; i < kClustersIndices.Count; i++)
+                {
+                    possibleKClustersIndices.Add(new List<int>());
+                }
+
+                // Recorrer todas las instancias del conjunto de datos.
+                for (int i = 0; i < dataSet.Rows.Count; i++)
+                {
+                    // Lista para almacenar las distancias entre la instancia y las instancias K.
+                    List<double> euclideanDistances = new List<double>();
+
+                    // Calcular las distancias.
+                    foreach (DataTable kInstance in kInstances)
+                    {
+                        // Crear nueva instancia con los valores.
+                        DataRow dataSetInstance = dataSet.NewRow();
+
+                        // Llenar los valores de los atributos numéricos en la instancia.
+                        for (int j = 0; j < numericalAttributesIndices.Count; j++)
+                        {
+                            // Obtener el índice del atributo numérico.
+                            int attributeIndex = numericalAttributesIndices[j];
+
+                            // Copiar el valor del atributo.
+                            dataSetInstance[attributeIndex] = numericalAttributesValues[j][i];
+                        }
+
+                        // Llenar los valores de los atributos ordinales en la instancia.
+                        for (int j = 0; j < ordinalAttributesIndices.Count; j++)
+                        {
+                            // Obtener el índice del atributo numérico.
+                            int attributeIndex = ordinalAttributesIndices[j];
+
+                            // Copiar el valor del atributo.
+                            dataSetInstance[attributeIndex] = ordinalAttributesValues[j][i];
+                        }
+
+                        // Agregar a la lista la distancia euclidiana entre la instancia actual y la instancia K.
+                        euclideanDistances.Add(GetEuclideanDistance(dataSetInstance, kInstance.Rows[0], numericalAttributesIndices, ordinalAttributesIndices));
+                    }
+
+                    // Agregar el índice de la instancia actual a la lista de índices de la instancia K más cercano.
+                    possibleKClustersIndices[euclideanDistances.IndexOf(euclideanDistances.Min())].Add(i);
+                }
+
+                // Verificar si los índices de los clústeres son iguales a los posibles índices de los clústeres.
+                for (int i = 0; i < kClustersIndices.Count; i++)
+                {
+                    // Verificar si el numero de indices del clúster es diferente.
+                    if (kClustersIndices[i].Count != possibleKClustersIndices[i].Count)
+                    {
+                        // El numero de indices por clúster es diferente.
+                        // Actualizar la variable bool y romper el ciclo.
+                        changesMade = true;
+                        break;
+                    }
+
+                    // Recorrer los índices del clúster.
+                    for (int j = 0; j < kClustersIndices[i].Count; j++)
+                    {
+                        // Verificar si los índices del clúster son diferentes.
+                        if (kClustersIndices[i][j] != possibleKClustersIndices[i][j])
+                        {
+                            // Los índices son diferentes.
+                            // Actualizar la variable bool y romper el ciclo.
+                            changesMade = true;
+                            break;
+                        }
+                    }
+                    
+                    // Verificar si se realizaron cambios en los clústeres.
+                    if (changesMade)
+                    {
+                        // Se realizaron cambios.
+                        // Romper el ciclo.
+                        break;
+                    }
+                }
+
+                // Verificar si hubo cambios en los clústeres.
+                if (changesMade)
+                {
+                    // Los índices de los clústeres son diferentes.
+                    kClustersIndices = possibleKClustersIndices;
+
+                    // Calcular nuevamente las instancias K.
+                    for (int i = 0; i < kClustersIndices.Count; i++)
+                    {
+                        // Lista para almacenar los índices de los clústeres.
+                        List<int> instanceIndices = kClustersIndices[i];
+
+                        // Realizar la sumatoria en cada atributo numérico.
+                        for (int j = 0; j < numericalAttributesIndices.Count; j++)
+                        {
+                            // Obtener el índice del atributo.
+                            int attributeIndex = numericalAttributesIndices[j];
+
+                            // Variable para realizar la sumatoria.
+                            double summation = 0;
+
+                            // Recorrer todas las instancias del clúster.
+                            for (int k = 0; k < instanceIndices.Count; k++)
+                            {
+                                summation += Convert.ToDouble(numericalAttributesValues[j][instanceIndices[k]]);
+                            }
+
+                            // Verificar si el promedio puede ser calculado.
+                            if (summation != 0)
+                            {
+                                // Calcular el promedio y asignarlo.
+                                kInstances[i].Rows[0][attributeIndex] = summation / instanceIndices.Count;
+                            }
+                        }
+
+                        // Realizar la sumatoria en cada atributo ordinal.
+                        for (int j = 0; j < ordinalAttributesIndices.Count; j++)
+                        {
+                            // Obtener el índice del atributo.
+                            int attributeIndex = ordinalAttributesIndices[j];
+
+                            // Variable para realizar la sumatoria.
+                            double summation = 0;
+
+                            // Recorrer todas las instancias del clúster.
+                            for (int k = 0; k < instanceIndices.Count; k++)
+                            {
+                                summation += Convert.ToDouble(ordinalAttributesValues[j][instanceIndices[k]]);
+                            }
+
+                            // Verificar si el promedio puede ser calculado.
+                            if (summation != 0)
+                            {
+                                // Calcular el promedio y asignarlo.
+                                kInstances[i].Rows[0][attributeIndex] = summation / instanceIndices.Count;
+                            }
+                        }
+                    }
+
+                    // Asignar 0 a la variable que determina el numero de iteraciones sin cambios.
+                    iterationsWithoutChanges = 0;
+                }
+                else
+                {
+                    // Los índices de los clústeres son iguales.
+                    iterationsWithoutChanges++;
+                }
+            }
+            while (iterationsWithoutChanges < maximumIterationsWithoutChanges);
+
+            // Asignar las instancias más cercanas a los puntos.
+            for (int i = 0; i < kClustersIndices.Count; i++)
+            {
+                // Lista para almacenar los índices del clúster.
+                List<int> instanceIndices = kClustersIndices[i];
+
+                // Agregar las instancias en los índices al clúster.
+                for (int j = 0; j < instanceIndices.Count; j++)
+                {
+                    kClusters[i].Rows.Add(dataSet.Rows[instanceIndices[j]].ItemArray);
+                }
+            }
+
+            // Retornar las instancias K y los clústeres.
+            return new List<List<DataTable>>() { kInstances, kClusters };
+        }
+
+        private double GetNumericalValueNormalization(int numericalValue, int numberOfNumericalValues)
+        {
+            // Retornar el valor numérico normalizado.
+            return ((double)numericalValue - 1) / ((double)numberOfNumericalValues - 1);
+        }
+
+        private double GenerateRandomDouble(Random numberGenerator, double minimumValue, double maximumValue)
+        {
+            // Retornar un "double" aleatorio.
+            return minimumValue + (numberGenerator.NextDouble() * (maximumValue - minimumValue));
+        }
+
+        private double GetEuclideanDistance(DataRow instanceOne, DataRow instanceTwo, List<int> numericalAttributesIndices, List<int> ordinalAttributesIndices)
+        {
+            // Variable para almacenar la sumatoria.
+            double summation = 0;
+
+            // Realizar la sumatoria en los atributos numéricos.
+            foreach (int index in numericalAttributesIndices)
+            {
+                summation += Math.Pow(Convert.ToDouble(instanceOne[index].ToString()) - Convert.ToDouble(instanceTwo[index].ToString()), 2);
+            }
+
+            // Realizar la sumatoria en los atributos ordinales.
+            foreach (int index in ordinalAttributesIndices)
+            {
+                summation += Math.Pow(Convert.ToDouble(instanceOne[index].ToString()) - Convert.ToDouble(instanceTwo[index].ToString()), 2);
+            }
+
+            // Retornar la distancia euclidana.
+            return Math.Sqrt(summation);
+        }
+
         private List<DataTable> HoldOut()
         {
             // "DataTables" para el conjunto de entrenamiento y el de prueba.
@@ -715,11 +1640,11 @@ namespace Software_de_Minería_de_Datos
             List<DataTable> kSets = new List<DataTable>();
 
             // Variables para almacenar el número de instancias por conjunto.
-            int kSetInstanceNumber = (int)Math.Round(dataSet.Rows.Count / (double)NumericUpDownKValue.Value);
-            int lastKSetInstanceNumber = dataSet.Rows.Count - (kSetInstanceNumber * (int)NumericUpDownKValue.Value) + kSetInstanceNumber;
+            int kSetInstanceNumber = (int)Math.Round(dataSet.Rows.Count / (double)NumericUpDownKFoldCrossValidationKValue.Value);
+            int lastKSetInstanceNumber = dataSet.Rows.Count - (kSetInstanceNumber * (int)NumericUpDownKFoldCrossValidationKValue.Value) + kSetInstanceNumber;
 
             // Obtener los conjuntos.
-            for (int i = 0; i < NumericUpDownKValue.Value - 1; i++)
+            for (int i = 0; i < NumericUpDownKFoldCrossValidationKValue.Value - 1; i++)
             {
                 // Crear una nueva "DataTable" para un nuevo conjunto.
                 DataTable kSet = dataSet.Clone();
@@ -740,7 +1665,7 @@ namespace Software_de_Minería_de_Datos
             // Obtener el último conjunto.
             for (int i = 0; i < lastKSetInstanceNumber; i++)
             {
-                lastKSet.Rows.Add(dataSet.Rows[kSetInstanceNumber * ((int)NumericUpDownKValue.Value - 1) + i].ItemArray);
+                lastKSet.Rows.Add(dataSet.Rows[kSetInstanceNumber * ((int)NumericUpDownKFoldCrossValidationKValue.Value - 1) + i].ItemArray);
             }
 
             // Agregar el último conjunto a la lista de conjuntos.
@@ -794,16 +1719,22 @@ namespace Software_de_Minería_de_Datos
 
         private DataTable MergeSets(List<DataTable> sets, DataTable exception)
         {
+            // "DataTable" para combinar las "DataTables".
             DataTable mergedSet = sets[0].Clone();
 
+            // Combinar cada "DataTable".
             foreach (DataTable set in sets)
             {
+                // Verificar si la "DataTable" no es la excepción.
                 if (set != exception)
                 {
+                    // No es la excepción.
+                    // Combinar la "DataTable" con la combinación existente.
                     mergedSet.Merge(set);
                 }
             }
 
+            // Retornar la combinacion de "DataTables".
             return mergedSet;
         }
 
